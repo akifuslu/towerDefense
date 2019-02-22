@@ -1,32 +1,26 @@
+#include "pch.h"
 
-#include "raylib.h"
 
-int main() {
-	int screenWidth = 800;
-	int screenHeight = 450;
+int main()
+{
+	int screenWidth = 1024;
+	int screenHeight = 768;
 
-	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
-
+	InitWindow(screenWidth, screenHeight, "Tower Defense Pre-Alpha");
 	SetTargetFPS(60);
-	while (!WindowShouldClose())    // Detect window close button or ESC key
+
+	while (!WindowShouldClose())
 	{
-		// Update
-		//----------------------------------------------------------------------------------
-		// TODO: Update your variables here
-		//----------------------------------------------------------------------------------
+		//Update Method
 
-		// Draw
-		//----------------------------------------------------------------------------------
+		//Draw
 		BeginDrawing();
-
 		ClearBackground(RAYWHITE);
-
-		DrawText("Anani sikim gotum cikti calistirana kadar", 190, 200, 20, RED);
-
+		DrawText("Tower Defense!!", 512, 384, 30, RED);
 		EndDrawing();
 	}
 
-	CloseWindow();        // Close window and OpenGL context
+	CloseWindow();
 
 	return 0;
 }

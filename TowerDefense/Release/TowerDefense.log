@@ -1,0 +1,4 @@
+﻿  main.cpp
+  pch.cpp
+LİNK : fatal error C1007: unrecognized flag '-Ot' in 'p2'
+LINK : fatal error LNK1257: code generation failed

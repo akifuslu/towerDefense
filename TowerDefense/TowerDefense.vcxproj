@@ -76,12 +76,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\repos\TowerDefense\TowerDefense\src\external\glfw\include\GLFW;D:\repos\TowerDefense\TowerDefense\src\external;D:\repos\TowerDefense\TowerDefense\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\raylibTemplate\dependencies\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GRAPHICS_API_OPENGL_33;PLATFORM_DESKTOP;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\repos\TowerDefense\TowerDefense\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\raylibTemplate\dependencies\raylib_debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -101,10 +101,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)\raylibTemplate\dependencies\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\raylibTemplate\dependencies\raylib_release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -122,41 +125,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\raylib-master\src\core.c" />
-    <ClCompile Include="..\..\..\raylib-master\src\models.c" />
-    <ClCompile Include="..\..\..\raylib-master\src\raudio.c" />
-    <ClCompile Include="..\..\..\raylib-master\src\rglfw.c" />
-    <ClCompile Include="..\..\..\raylib-master\src\shapes.c" />
-    <ClCompile Include="..\..\..\raylib-master\src\text.c" />
-    <ClCompile Include="..\..\..\raylib-master\src\textures.c" />
-    <ClCompile Include="..\..\..\raylib-master\src\utils.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\raylib-master\src\camera.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\config.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\easings.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\gestures.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\physac.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\raudio.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\raylib.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\raymath.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\rlgl.h" />
-    <ClInclude Include="..\..\..\raylib-master\src\utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\..\..\raylib-master\src\CMakeLists.txt" />
-    <Text Include="..\..\..\raylib-master\src\CMakeOptions.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\raylib-master\src\config.h.in" />
-    <None Include="..\..\..\raylib-master\src\Makefile" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\raylib-master\src\raylib.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\..\..\raylib-master\src\raylib.rc" />
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
