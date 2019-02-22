@@ -129,6 +129,7 @@
     <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameEntity.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
