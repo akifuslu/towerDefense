@@ -1,11 +1,11 @@
 #include "pch.h"
-
+#include "ResourceLoader.h"
 
 int main()
 {
 	int screenWidth = 1024;
 	int screenHeight = 512;
-
+	
 	InitWindow(screenWidth, screenHeight, "Tower Defense Pre-Alpha");
 	Texture2D sky = LoadTexture("Resources\\sky.png");
 	Texture2D cloud = LoadTexture("Resources\\cloud.png");
