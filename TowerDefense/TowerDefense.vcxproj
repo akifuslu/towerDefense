@@ -131,6 +131,11 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\cloud.png" />
+    <Image Include="Resources\sky.png" />
+    <Image Include="Resources\sword.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
