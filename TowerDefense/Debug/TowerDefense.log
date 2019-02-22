@@ -1,4 +1,0 @@
-﻿  main.cpp
-d:\github\towerdefense\towerdefense\main.cpp(23): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\towerdefense\towerdefense\main.cpp(24): warning C4305: 'argument': truncation from 'double' to 'float'
-  TowerDefense.vcxproj -> D:\github\TowerDefense\Debug\TowerDefense.exe

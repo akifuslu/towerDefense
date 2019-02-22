@@ -1,6 +1,5 @@
 #include "pch.h"
 
-
 int main()
 {
 	int screenWidth = 1024;
@@ -20,6 +19,7 @@ int main()
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
 		DrawTextureEx(sky, {0,0}, 0, 2, WHITE);
+		DrawText(std::to_string(i++).c_str(), 200, 20, 200, BLUE);
 		DrawTextureEx(cloud, { 100,100 }, 0, 0.7, WHITE);
 		DrawTextureEx(cloud, { 600,30 }, 0, 0.7, WHITE);
 		DrawTextureEx(sword, { 450,275 }, 0, 1.5, WHITE);
