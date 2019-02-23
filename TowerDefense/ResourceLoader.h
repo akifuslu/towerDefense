@@ -1,9 +1,7 @@
 #pragma once
+
 #include "pch.h"
-#include <string>
-#include <unordered_map>
-#include <filesystem>
-#include <iostream>
+
 namespace fs = std::experimental::filesystem;
 
 class ResourceLoader

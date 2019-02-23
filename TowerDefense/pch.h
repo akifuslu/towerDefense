@@ -14,5 +14,7 @@
 #include "raylib.h"
 #include <iostream>
 #include <string>
+#include <unordered_map>
+#include <filesystem>
 
 #endif //PCH_H
