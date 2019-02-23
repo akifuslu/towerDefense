@@ -11,21 +11,21 @@ public:
 private:
 
 	//Scale
-	double m_scale;
+	float m_scale;
 
 	//Rotation radian
-	double m_rotation;
+	float m_rotation;
 
 	//Location on the (x, y) coordinate system
 	Vector2 m_location;
 
 	//Name of the entity image
-	std::string m_image;
+	Texture2D& m_image;
 
 public:
 	//Default constructor
-	GameEntity(Vector2 coordinates = {0., 0.}, double scale = 1., double rotation = 0., std::string imageName = "")
-		: m_location(coordinates), m_scale(scale), m_rotation(rotation), m_image(imageName)
+	GameEntity(Texture2D& image, Vector2 coordinates = {0., 0.}, float rotation = 0., float scale = 1.)
+		: m_location(coordinates), m_scale(scale), m_rotation(rotation), m_image(image)
 	{}
 
 	//Destructor
@@ -33,18 +33,18 @@ public:
 	{}
 
 
-	//Gets and Sets
+	//Getters and Setters
 
-	double getScale() { return m_scale; }
-	void   setScale(double newScale) { m_scale = newScale; }
+	float getScale() { return m_scale; }
+	void   setScale(float newScale) { m_scale = newScale; }
 
-	double getRotation() { return m_rotation; }
-	void   setRotation(double newRotation) { m_rotation = newRotation; }
+	float getRotation() { return m_rotation; }
+	void   setRotation(float newRotation) { m_rotation = newRotation; }
 
 	Vector2 getLocation() { return m_location; }
-	void    setLocation(Vector2 newLocation) { m_location = newLocation; }
+	void    setLocation(const Vector2& newLocation) { m_location = newLocation; }
 
-	std::string getImageName() { return m_image; }
-	void        setImageName(std::string newImageName) { m_image = newImageName; }
+	Texture2D& getImage() { return m_image; }
+	void      setImage(const Texture2D& newImage) { m_image = newImage; }
 
 };
