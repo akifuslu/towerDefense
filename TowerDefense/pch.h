@@ -12,5 +12,7 @@
 // TODO: add headers that you want to pre-compile here
 
 #include "raylib.h"
+#include <iostream>
+#include <string>
 
 #endif //PCH_H

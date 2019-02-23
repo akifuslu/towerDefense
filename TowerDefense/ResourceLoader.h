@@ -37,6 +37,7 @@ void ResourceLoader::Load(const std::string & directory)
 		Image image = LoadImage(path.c_str());
 		Texture2D texture = LoadTextureFromImage(image);
 		textures.insert({ fileName, texture });
+		UnloadImage(image);
 	}
 }
 

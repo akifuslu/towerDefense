@@ -1,4 +1,4 @@
 ﻿  main.cpp
-d:\github\towerdefense\towerdefense\main.cpp(26): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\towerdefense\towerdefense\main.cpp(27): warning C4305: 'argument': truncation from 'double' to 'float'
+  pch.cpp
+  Generating Code...
   TowerDefense.vcxproj -> D:\github\TowerDefense\Debug\TowerDefense.exe
