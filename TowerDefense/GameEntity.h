@@ -6,7 +6,10 @@ class GameEntity
 {
 
 public:
+
+	//Entity Functions
 	void Draw();
+	void Move(Vector2& moveVector);
 
 private:
 
