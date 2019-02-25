@@ -9,27 +9,19 @@ Singleton class to keep resources and load when required
 class ResourceLoader
 {
 public:
+	static ResourceLoader& GetInstance()
+	{
+		static ResourceLoader instance;
+		return instance;
+	}
+	ResourceLoader(ResourceLoader const&) = delete;
+	void operator=(ResourceLoader const&) = delete;
 	void Load(const std::string &directory);//Load all .png files from given directory
 	Texture2D& GetTexture(const std::string &textureName);//Get Texture2D by name
-	static ResourceLoader* GetInstance();
 private:
 	std::unordered_map<std::string, Texture2D> textures;
-	ResourceLoader();
-	~ResourceLoader();
-	static ResourceLoader* _instance;
+	ResourceLoader() {};
 };
-
-ResourceLoader* ResourceLoader::_instance = 0;
-
-ResourceLoader::ResourceLoader()
-{
-	//
-}
-
-ResourceLoader::~ResourceLoader()
-{
-	delete _instance;
-}
 
 
 void ResourceLoader::Load(const std::string & directory)
@@ -49,14 +41,5 @@ void ResourceLoader::Load(const std::string & directory)
 inline Texture2D& ResourceLoader::GetTexture(const std::string & textureName)
 {
 	return textures.find(textureName)->second;
-}
-
-inline ResourceLoader * ResourceLoader::GetInstance()
-{
-	if (_instance == NULL)
-	{
-		_instance = new ResourceLoader();
-	}
-	return _instance;
 }
 

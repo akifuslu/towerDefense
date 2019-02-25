@@ -17,4 +17,8 @@
 #include <unordered_map>
 #include <filesystem>
 
+#define GETTEXTURE(x) ResourceLoader::GetInstance().GetTexture(x)
+#define LOG(x) std::cout << x << std::endl;
+
+
 #endif //PCH_H
