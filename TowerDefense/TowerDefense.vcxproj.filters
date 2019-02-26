@@ -24,6 +24,9 @@
     <ClCompile Include="GameEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Towerspot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -35,6 +38,15 @@
     <ClInclude Include="ResourceLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Clickable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Towerspot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\cloud.png">
@@ -44,6 +56,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\sword.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\towerspot.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\tutorial-background.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

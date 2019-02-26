@@ -133,16 +133,22 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="Towerspot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clickable.h" />
     <ClInclude Include="GameEntity.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="Towerspot.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\cloud.png" />
     <Image Include="Resources\sky.png" />
     <Image Include="Resources\sword.png" />
+    <Image Include="Resources\towerspot.png" />
+    <Image Include="Resources\tutorial-background.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
