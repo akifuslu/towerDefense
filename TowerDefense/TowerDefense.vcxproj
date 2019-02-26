@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
@@ -136,6 +137,7 @@
     <ClCompile Include="Towerspot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Clickable.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="InputHandler.h" />

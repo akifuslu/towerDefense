@@ -27,6 +27,9 @@
     <ClCompile Include="Towerspot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Behaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Towerspot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -25,6 +25,9 @@ private:
 	//Name of the entity image
 	Texture2D& m_image;
 
+	//Entity status
+	bool m_active;
+
 public:
 	//Default constructor
 	GameEntity(Texture2D& image, Vector2 coordinates = {0., 0.}, float rotation = 0., float scale = 1.)
@@ -49,5 +52,8 @@ public:
 
 	Texture2D& getImage() { return m_image; }
 	void      setImage(const Texture2D& newImage) { m_image = newImage; }
+
+	bool getStatus() { return m_active; }
+	void changeStatus() { m_active = (m_active) ? false : true; }
 
 };
