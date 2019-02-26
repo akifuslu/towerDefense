@@ -54,6 +54,6 @@ public:
 	void      setImage(const Texture2D& newImage) { m_image = newImage; }
 
 	bool getStatus() { return m_active; }
-	void changeStatus() { m_active = (m_active) ? false : true; }
+	void setStatus(bool status) { m_active = status; }
 
 };

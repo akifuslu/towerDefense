@@ -12,6 +12,11 @@ public:
 		SetClickAreaType(Circle);
 		UpdateClickArea(coordinates.x, coordinates.y, image.width, image.height);
 		InputHandler::GetInstance().Register(*this);//register as clickable to get click events 
+		full = false;
+	}
+	~Towerspot()
+	{
+		InputHandler::GetInstance().Remove(*this);//remove from click event list 
 	}
 	bool IsFull();
 	void OnClick() override;

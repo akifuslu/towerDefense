@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Towerspot.h"
+#include "TowerButtonHandler.h"
 
 bool Towerspot::IsFull()
 {
@@ -8,5 +9,7 @@ bool Towerspot::IsFull()
 
 void Towerspot::OnClick()
 {
-	LOG("Clicked on me!");
+	if (full)//TODO: if full check for demolition
+		return;
+	TowerButtonHandler::GetInstance().ShowButtons(*this);
 }

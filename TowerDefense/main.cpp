@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "GameEntity.h"
 #include "ResourceLoader.h"
+#include "InputHandler.h"
+#include "Clickable.h"
 #include "Towerspot.h"
+#include "TowerButton.h"
+#include "TowerButtonHandler.h"
 
 int main()
 {
@@ -12,6 +16,21 @@ int main()
 	ResourceLoader::GetInstance().Load("Resources");
 	GameEntity background(GETTEXTURE("tutorial-background"), {0,0}, 0, 1);
 	Towerspot spotOne(GETTEXTURE("towerspot"), { 607,226 }, 0, 1);
+	Towerspot spotTwo(GETTEXTURE("towerspot"), { 350,400 }, 0, 1);
+	Towerspot spotThree(GETTEXTURE("towerspot"), { 300,100 }, 0, 1);
+
+	TowerButton button1(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
+	button1.setStatus(false);
+	button1.SetMessage("Button-1");
+	TowerButton button2(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
+	button2.setStatus(false);
+	button2.SetMessage("Button-1");
+	TowerButton button3(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
+	button3.setStatus(false);
+	button3.SetMessage("Button-1");
+	TowerButtonHandler::GetInstance().AddButton(button1);
+	TowerButtonHandler::GetInstance().AddButton(button2);
+	TowerButtonHandler::GetInstance().AddButton(button3);
 	SetTargetFPS(60);
 	
 	while (!WindowShouldClose())
@@ -26,6 +45,12 @@ int main()
 		ClearBackground(RAYWHITE);
 		background.Draw();
 		spotOne.Draw();
+		spotTwo.Draw();
+		spotThree.Draw();
+		button1.Draw();
+		button2.Draw();
+		button3.Draw();
+
 		EndDrawing();
 	}
 
