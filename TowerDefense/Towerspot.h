@@ -16,7 +16,7 @@ public:
 	}
 	~Towerspot()
 	{
-		InputHandler::GetInstance().Remove(*this);//remove from click event list 
+		InputHandler::GetInstance().Unregister(*this);//remove from click event list 
 	}
 	bool IsFull();
 	void OnClick() override;

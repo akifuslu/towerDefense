@@ -15,8 +15,10 @@ public:
 	void AddButton(TowerButton& button);
 	void ShowButtons(Towerspot& spot);
 	void HideButtons();
+	void BuildTower();
 private:
-	TowerButtonHandler() {};
+	TowerButtonHandler() { currentSpot = NULL; };
 	std::vector<TowerButton*> towerButtons;
+	Towerspot* currentSpot;
 };
 
