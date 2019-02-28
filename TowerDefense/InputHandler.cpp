@@ -7,7 +7,7 @@ void InputHandler::Register(Clickable & entity)
 	entities.push_back(&entity);
 }
 
-void InputHandler::Remove(Clickable & entity)
+void InputHandler::Unregister(Clickable & entity)
 {
 	entities.remove(&entity);
 }

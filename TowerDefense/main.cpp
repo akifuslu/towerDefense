@@ -6,6 +6,7 @@
 #include "Towerspot.h"
 #include "TowerButton.h"
 #include "TowerButtonHandler.h"
+#include "Behaviour.h"
 
 int main()
 {
@@ -24,10 +25,10 @@ int main()
 	button1.SetMessage("Button-1");
 	TowerButton button2(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
 	button2.setStatus(false);
-	button2.SetMessage("Button-1");
+	button2.SetMessage("Button-2");
 	TowerButton button3(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
 	button3.setStatus(false);
-	button3.SetMessage("Button-1");
+	button3.SetMessage("Button-3");
 	TowerButtonHandler::GetInstance().AddButton(button1);
 	TowerButtonHandler::GetInstance().AddButton(button2);
 	TowerButtonHandler::GetInstance().AddButton(button3);
@@ -43,6 +44,7 @@ int main()
 		//Draw
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
+		//Draw static entities
 		background.Draw();
 		spotOne.Draw();
 		spotTwo.Draw();
@@ -50,7 +52,8 @@ int main()
 		button1.Draw();
 		button2.Draw();
 		button3.Draw();
-
+		//Draw dynamic entities
+		Behaviour::GetInstance().DrawEntities();
 		EndDrawing();
 	}
 

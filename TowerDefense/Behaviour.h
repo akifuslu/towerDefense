@@ -10,7 +10,7 @@ private:
 	Behaviour() {};
 
 	//Entities we want to control
-	std::vector<GameEntity*> entities;
+	std::list<GameEntity*> entities;
 
 public:
 	Behaviour(Behaviour const&) = delete;
@@ -24,6 +24,13 @@ public:
 	//Registering an entity to entity vector
 	void Register(GameEntity& entity);
 
+	//Unregister from behaviour updates
+	void Unregister(GameEntity& entity);
+
 	//Updating the registered entities
 	void Update();
+
+	//Draw registered entities
+	void DrawEntities();
+
 };

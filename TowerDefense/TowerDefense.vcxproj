@@ -137,6 +137,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="ResourceLoader.cpp" />
+    <ClCompile Include="Tower.cpp" />
     <ClCompile Include="TowerButton.cpp" />
     <ClCompile Include="TowerButtonHandler.cpp" />
     <ClCompile Include="Towerspot.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="Tower.h" />
     <ClInclude Include="TowerButton.h" />
     <ClInclude Include="TowerButtonHandler.h" />
     <ClInclude Include="Towerspot.h" />

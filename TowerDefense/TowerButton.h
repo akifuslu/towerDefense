@@ -15,7 +15,7 @@ public:
 	}
 	~TowerButton()
 	{
-		InputHandler::GetInstance().Remove(*this);//remove from click event list 
+		InputHandler::GetInstance().Unregister(*this);//remove from click event list 
 	}
 	void OnClick() override;
 private:

@@ -13,7 +13,7 @@ public:
 	InputHandler(InputHandler const&) = delete;
 	void operator=(InputHandler const&) = delete;
 	void Register(Clickable& entity);
-	void Remove(Clickable& entity);
+	void Unregister(Clickable& entity);
 	void Clear();
 	void HandleClick(Vector2 mousePos);
 private:
