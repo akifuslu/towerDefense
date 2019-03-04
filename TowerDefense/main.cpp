@@ -7,6 +7,7 @@
 #include "TowerButton.h"
 #include "TowerButtonHandler.h"
 #include "Behaviour.h"
+#include "Mob.h"
 
 int main()
 {
@@ -19,6 +20,11 @@ int main()
 	Towerspot spotOne(GETTEXTURE("towerspot"), { 607,226 }, 0, 1);
 	Towerspot spotTwo(GETTEXTURE("towerspot"), { 350,400 }, 0, 1);
 	Towerspot spotThree(GETTEXTURE("towerspot"), { 300,100 }, 0, 1);
+
+	Behaviour::GetInstance().getLanesFromTxt("lanes.txt");
+	Mob firstMob(GETTEXTURE("mob"), { 520, 10 }, 0, 2);
+
+	Behaviour::GetInstance().addMob(firstMob);
 
 	TowerButton button1(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
 	button1.setStatus(false);
@@ -54,6 +60,7 @@ int main()
 		button3.Draw();
 		//Draw dynamic entities
 		Behaviour::GetInstance().DrawEntities();
+		Behaviour::GetInstance().Update();
 		EndDrawing();
 	}
 
