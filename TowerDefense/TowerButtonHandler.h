@@ -18,7 +18,7 @@ public:
 	void BuildTower();
 private:
 	TowerButtonHandler() { currentSpot = NULL; };
-	std::vector<TowerButton*> towerButtons;
+	std::list<TowerButton*> towerButtons;
 	Towerspot* currentSpot;
 };
 

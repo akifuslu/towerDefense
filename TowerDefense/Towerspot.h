@@ -19,6 +19,7 @@ public:
 		InputHandler::GetInstance().Unregister(*this);//remove from click event list 
 	}
 	bool IsFull();
+	void SetFull(bool isFull);
 	void OnClick() override;
 private:
 	bool full;
