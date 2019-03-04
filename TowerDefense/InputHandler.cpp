@@ -38,7 +38,6 @@ void InputHandler::HandleClick(Vector2 mousePos)
 			}
 			break;
 		default:
-			TowerButtonHandler::GetInstance().HideButtons();
 			break;
 		}
 	}
