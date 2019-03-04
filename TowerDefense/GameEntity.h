@@ -57,5 +57,3 @@ public:
 	void setStatus(bool status) { m_active = status; }
 
 };
-
-//hi
