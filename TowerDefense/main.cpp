@@ -8,6 +8,7 @@
 #include "TowerButtonHandler.h"
 #include "Behaviour.h"
 #include "Mob.h"
+#include "Player.h"
 
 int main()
 {
@@ -26,18 +27,16 @@ int main()
 
 	Behaviour::GetInstance().addMob(firstMob);
 
-	TowerButton button1(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
+	TowerButton button1(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("archer-icon"));
 	button1.setStatus(false);
-	button1.SetMessage("Button-1");
-	TowerButton button2(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
+	TowerButton button2(Tower::ARCHER, "Presets//magic.txt", "tower", GETTEXTURE("magic-icon"));
 	button2.setStatus(false);
-	button2.SetMessage("Button-2");
-	TowerButton button3(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
+	TowerButton button3(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("archer-icon"));
 	button3.setStatus(false);
-	button3.SetMessage("Button-3");
 	TowerButtonHandler::GetInstance().AddButton(button1);
 	TowerButtonHandler::GetInstance().AddButton(button2);
 	TowerButtonHandler::GetInstance().AddButton(button3);
+	Player::GetInstance().addGold(5500);
 	SetTargetFPS(60);
 	
 	while (!WindowShouldClose())
