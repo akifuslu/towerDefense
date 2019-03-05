@@ -3,18 +3,19 @@
 #include "pch.h"
 #include "GameEntity.h"
 #include "Mob.h"
+#include "Tower.h"
 
 //Singleton behaviour class for updating towers and mobs
 class Behaviour
 {
 private:
 	Behaviour() {};
-
-	//Entities we want to control
-	std::list<GameEntity*> entities;
 	
 	//Mobs we want to control
-	std::list<Mob> mobs;
+	std::list<Mob*> mobs;
+
+	//Towers we want to control
+	std::list<Tower*> towers;
 
 	//Path lanes for mobs to walk
 	std::array<std::vector<Vector2>, 5> pathLanes;
@@ -28,17 +29,20 @@ public:
 		return instance;
 	}
 
-	//Add mob
-	void addMob(Mob& mobToAdd);
+	//Registering mobs to update behaviour
+	void RegisterMob(Mob& entity);
+
+	//Unregister from behaviour updates
+	void UnregisterMob(Mob& entity);
 
 	//Read lanes from txt file.
 	void getLanesFromTxt(std::string filePath);
 	
-	//Registering an entity to entity vector
-	void Register(GameEntity& entity);
+	//Registering towers to update behaviour
+	void RegisterTower(Tower& entity);
 
 	//Unregister from behaviour updates
-	void Unregister(GameEntity& entity);
+	void UnregisterTower(Tower& entity);
 
 	//Updating the registered entities
 	void Update();

@@ -25,7 +25,7 @@ int main()
 	Behaviour::GetInstance().getLanesFromTxt("lanes.txt");
 	Mob firstMob(GETTEXTURE("mob"), { 520, 10 }, 0, 2);
 
-	Behaviour::GetInstance().addMob(firstMob);
+	Behaviour::GetInstance().RegisterMob(firstMob);
 
 	TowerButton button1(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("archer-icon"));
 	button1.setStatus(false);
