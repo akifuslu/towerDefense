@@ -1,6 +1,7 @@
 #pragma once
 #include "TowerButton.h"
 #include "Towerspot.h"
+#include "Tower.h"
 
 class TowerButtonHandler
 {
@@ -15,7 +16,7 @@ public:
 	void AddButton(TowerButton& button);
 	void ShowButtons(Towerspot& spot);
 	void HideButtons();
-	void BuildTower();
+	void BuildTower(Tower::TowerType towerType, const std::string& towerImage, float range, float delay, int baseDamage);
 private:
 	TowerButtonHandler() { currentSpot = NULL; };
 	std::list<TowerButton*> towerButtons;

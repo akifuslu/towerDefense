@@ -8,7 +8,7 @@ class GameEntity
 public:
 
 	//Entity Functions
-	void Draw();
+	virtual void Draw();
 	void Move(Vector2& moveVector);
 
 private:

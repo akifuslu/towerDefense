@@ -34,12 +34,12 @@ void TowerButtonHandler::HideButtons()
 	}
 }
 
-void TowerButtonHandler::BuildTower()
+void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::string& towerImage, float range, float delay, int baseDamage)
 {
 	if (!currentSpot)
 		throw std::string("Null Pointer Exception!");
 	//new tower will register itself for behaviour updates and it will be deleted by behaviour class
-	new Tower(GETTEXTURE("tower"), currentSpot->getLocation(), currentSpot->getRotation(), currentSpot->getScale());
+	new Tower(GETTEXTURE(towerImage), currentSpot->getLocation(), currentSpot->getRotation(), currentSpot->getScale(), range, delay, baseDamage);
 	currentSpot->SetFull(true);
 	currentSpot = NULL;
 }
