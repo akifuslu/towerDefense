@@ -15,8 +15,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <array>
 #include <unordered_map>
 #include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
+#include <math.h>
 
 #define GETTEXTURE(x) ResourceLoader::GetInstance().GetTexture(x)
 #define LOG(x) std::cout << x << std::endl;

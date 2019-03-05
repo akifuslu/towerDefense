@@ -7,6 +7,7 @@
 #include "TowerButton.h"
 #include "TowerButtonHandler.h"
 #include "Behaviour.h"
+#include "Mob.h"
 
 int main()
 {
@@ -20,12 +21,20 @@ int main()
 	Towerspot spotTwo(GETTEXTURE("towerspot"), { 350,400 }, 0, 1);
 	Towerspot spotThree(GETTEXTURE("towerspot"), { 300,100 }, 0, 1);
 
-	TowerButton button1(Tower::ARCHER, "Presets//archer.txt","tower", GETTEXTURE("archer-icon"), { 0,0 }, 0, 1);
+	Behaviour::GetInstance().getLanesFromTxt("lanes.txt");
+	Mob firstMob(GETTEXTURE("mob"), { 520, 10 }, 0, 2);
+
+	Behaviour::GetInstance().addMob(firstMob);
+
+	TowerButton button1(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
 	button1.setStatus(false);
-	TowerButton button2(Tower::MAGIC, "Presets//magic.txt", "tower", GETTEXTURE("magic-icon"), { 0,0 }, 0, 1);
+	button1.SetMessage("Button-1");
+	TowerButton button2(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
 	button2.setStatus(false);
-	TowerButton button3(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
+	button2.SetMessage("Button-2");
+	TowerButton button3(GETTEXTURE("tower-button"), { 0,0 }, 0, 1);
 	button3.setStatus(false);
+	button3.SetMessage("Button-3");
 	TowerButtonHandler::GetInstance().AddButton(button1);
 	TowerButtonHandler::GetInstance().AddButton(button2);
 	TowerButtonHandler::GetInstance().AddButton(button3);
@@ -51,6 +60,7 @@ int main()
 		button3.Draw();
 		//Draw dynamic entities
 		Behaviour::GetInstance().DrawEntities();
+		Behaviour::GetInstance().Update();
 		EndDrawing();
 	}
 

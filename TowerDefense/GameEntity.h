@@ -47,7 +47,7 @@ public:
 	float getRotation() { return m_rotation; }
 	void   setRotation(float newRotation) { m_rotation = newRotation; }
 
-	Vector2 getLocation() { return m_location; }
+	Vector2 getLocation() const { return m_location; }
 	void    setLocation(const Vector2& newLocation) { m_location = newLocation; }
 
 	Texture2D& getImage() { return m_image; }
