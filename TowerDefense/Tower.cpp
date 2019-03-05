@@ -26,3 +26,10 @@ void Tower::LevelUpgrade()
 	level++;
 	//update range, delay and basedamage
 }
+
+Mob * Tower::getTarget()
+{	return m_target;	}
+
+void Tower::setTarget(Mob * target)
+{	m_target = target;	}
+

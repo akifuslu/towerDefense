@@ -4,8 +4,8 @@
 
 void Behaviour::RegisterMob(Mob & mobToAdd)
 {
-	//int r = (rand() % 5);
-	mobToAdd.setLane(2);
+	int r = (rand() % 5);
+	mobToAdd.setLane(r);
 	mobToAdd.setCurrentTarget(0);
 	mobs.push_back(&mobToAdd);
 }
@@ -29,16 +29,15 @@ void Behaviour::getLanesFromTxt(std::string filePath)
 	std::getline(newText, line);
 	corners = std::stoi(line);
 
-	//DEVELOP THIS
-	//Get lines one by one
 	while (std::getline(newText, line)) {
 		
 		std::stringstream ss(line);
 
-		ss >> chrTemp >> vecTemp.x >> chrTemp >> chrTemp >> vecTemp.y >> chrTemp;
-
-		pathLanes[curLane++].push_back(vecTemp);
-
+		for (int i = 0; i < corners; i++) {
+			ss >> vecTemp.x >> chrTemp >> vecTemp.y >> chrTemp;
+			pathLanes[curLane].push_back(vecTemp);
+		}
+		curLane++;
 	}
 }
 
@@ -58,10 +57,24 @@ void Behaviour::Update() {
 	for (auto & mob : mobs)//update all mobs
 	{
 		Vector2 moveVector;
-		moveVector.x = mob->getLocation().x - pathLanes[mob->getLane()][mob->getCurrentTarget()].x;
-		moveVector.y = mob->getLocation().y - pathLanes[mob->getLane()][mob->getCurrentTarget()].y;
+		moveVector.x = pathLanes[mob->getLane()][mob->getCurrentTarget()].x - mob->getLocation().x;
+		moveVector.y = pathLanes[mob->getLane()][mob->getCurrentTarget()].y - mob->getLocation().y;
 
 		float length = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
+
+		if (length < 1) {
+			if (pathLanes[mob->getLane()].size() > mob->getCurrentTarget()+1)
+			{
+				mob->setCurrentTarget(mob->getCurrentTarget()+1);
+				moveVector.x = pathLanes[mob->getLane()][mob->getCurrentTarget()].x - mob->getLocation().x;
+				moveVector.y = pathLanes[mob->getLane()][mob->getCurrentTarget()].y - mob->getLocation().y;
+				length = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
+			}
+			else
+			{
+				//player loses 1 point and mob refreshes
+			}
+		}
 
 		moveVector.x /= length;
 		moveVector.y /= length;
@@ -71,7 +84,10 @@ void Behaviour::Update() {
 		mob->Move(moveVector);
 	}
 
-	for (auto & tower : towers);//To-Do: update all towers
+	for (auto & tower : towers)//To-Do: update all towers
+	{
+		//tower->
+	}
 }
 
 void Behaviour::DrawEntities()
