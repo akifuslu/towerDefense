@@ -23,7 +23,7 @@ int main()
 	Towerspot spotTwo(GETTEXTURE("towerspot"), { 350,400 }, 0, 1);
 	Towerspot spotThree(GETTEXTURE("towerspot"), { 300,100 }, 0, 1);
 
-	Behaviour::GetInstance().getLanesFromTxt("lanes.txt");
+	Behaviour::GetInstance().getLanesFromTxt("Presets//lanes.txt");
 	Mob firstMob(GETTEXTURE("mob"), { 520, 10 }, 0, 2);
 
 	Behaviour::GetInstance().RegisterMob(firstMob);
