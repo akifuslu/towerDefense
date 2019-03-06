@@ -43,7 +43,7 @@ void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::strin
 	Vector2 pos = currentSpot->getLocation();
 	pos.x -= 12;
 	pos.y -= 25;
-	Behaviour::GetInstance().RegisterTower(*(new Tower(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));
+	Behaviour::GetInstance().RegisterTower((new Tower(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));
 	currentSpot->SetFull(true);
 	currentSpot->setStatus(false);
 	currentSpot = NULL;

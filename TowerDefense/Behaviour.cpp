@@ -3,17 +3,17 @@
 #include "Mob.h"
 #include "ResourceLoader.h"
 
-void Behaviour::RegisterMob(Mob & mobToAdd)
+void Behaviour::RegisterMob(Mob * mobToAdd)
 {
 	int r = (rand() % 5);
-	mobToAdd.setLane(r);
-	mobToAdd.setCurrentTarget(0);
-	mobs.push_back(&mobToAdd);
+	mobToAdd->setLane(r);
+	mobToAdd->setCurrentTarget(0);
+	mobs.push_back(mobToAdd);
 }
 
-void Behaviour::UnregisterMob(Mob & entity)
+void Behaviour::UnregisterMob(Mob * entity)
 {
-	mobs.remove(&entity);
+	mobs.remove(entity);
 }
 
 void Behaviour::getLanesFromTxt(std::string filePath)
@@ -42,14 +42,14 @@ void Behaviour::getLanesFromTxt(std::string filePath)
 	}
 }
 
-void Behaviour::RegisterTower(Tower & entity)
+void Behaviour::RegisterTower(Tower * entity)
 {
-	towers.push_back(&entity);
+	towers.push_back(entity);
 }
 
-void Behaviour::UnregisterTower(Tower & entity)
+void Behaviour::UnregisterTower(Tower * entity)
 {
-	towers.remove(&entity);
+	towers.remove(entity);
 }
 
 void Behaviour::Update() {
@@ -57,12 +57,11 @@ void Behaviour::Update() {
 	
 	for (auto & mob : mobs)//update all mobs
 	{
-
 		if (mob->getHealth() <= 0) {
 			//öldü.
 			mob->setImage(ResourceLoader::GetInstance().GetTexture("mobdead"));
 			//2-3 saniye dinlendirip deaktive et.
-			break;
+			continue;
 		}
 
 		Vector2 moveVector;
@@ -97,11 +96,13 @@ void Behaviour::Update() {
 	{
 
 
-		if (tower->getTarget() == NULL) {
+		if (tower->getTarget() == NULL || tower->getTarget()->getHealth() <= 0) {
 
 			//get new target
 
 			for (auto & mob : mobs) {
+				if (mob->getHealth() <= 0)
+					continue;
 				if (hypot(mob->getLocation().x - tower->getLocation().x,
 					mob->getLocation().y - tower->getLocation().y) < tower->GetRange()) {
 					tower->setTarget(mob);
@@ -135,7 +136,6 @@ void Behaviour::DrawEntities()
 	{
 		if (mob->getStatus()) {
 			mob->Draw();
-			LOG(mob->getHealth());
 		}
 	}
 	for (auto const& tower : towers)//draw all towers

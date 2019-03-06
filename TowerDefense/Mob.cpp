@@ -4,7 +4,7 @@
 //Getters & Setters
 
 int   Mob::getHealth() { return m_health; }
-void  Mob::updateHealth(int damage) { m_health -= damage; }
+void  Mob::updateHealth(int damage) { m_health -= damage; if (m_health <= 0) m_health = 0; }
 
 float Mob::getSpeed() const { return m_speed; }
 void  Mob::setSpeed(float newSpeed) { m_speed = newSpeed; }

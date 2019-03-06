@@ -30,19 +30,19 @@ public:
 	}
 
 	//Registering mobs to update behaviour
-	void RegisterMob(Mob& entity);
+	void RegisterMob(Mob* entity);
 
 	//Unregister from behaviour updates
-	void UnregisterMob(Mob& entity);
+	void UnregisterMob(Mob* entity);
 
 	//Read lanes from txt file.
 	void getLanesFromTxt(std::string filePath);
 	
 	//Registering towers to update behaviour
-	void RegisterTower(Tower& entity);
+	void RegisterTower(Tower* entity);
 
 	//Unregister from behaviour updates
-	void UnregisterTower(Tower& entity);
+	void UnregisterTower(Tower* entity);
 
 	//Updating the registered entities
 	void Update();

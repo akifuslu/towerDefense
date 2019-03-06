@@ -8,6 +8,8 @@
 #include "TowerButton.h"
 #include "TowerButtonHandler.h"
 #include "Player.h"
+#include "UIText.h"
+#include "Mob.h"
 
 void GameStateMachine::LoadMainMenu()
 {
@@ -87,12 +89,25 @@ void GameStateMachine::LoadLevel(int level)
 	staticEntities.push_back(towerButton1);
 	staticEntities.push_back(towerButton2);
 	staticEntities.push_back(towerButton3);
+	//display user stats
+	UIText* playerGold = new UIText("0", 25, WHITE, GETTEXTURE("coin"), { 40, 5 }, { 10, 10 }, 0, 1.5f);
+	Player::GetInstance().setGoldText(playerGold);
+	staticEntities.push_back(playerGold);
 	//load initial player gold
 	std::getline(levelPreset, line);
 	int gold;
 	std::stringstream plGold(line);
 	plGold >> tmp >> gold;
-	Player::GetInstance().addGold(5500);
+	Player::GetInstance().addGold(gold);
+	Mob* mob1 = new Mob(GETTEXTURE("mob"), { 480, -10 }, 0, 2, 1);
+	Mob* mob2 = new Mob(GETTEXTURE("mob"), { 470, -20 }, 0, 2, 1);
+	Mob* mob3 = new Mob(GETTEXTURE("mob"), { 490, -5 }, 0, 2, 1);
+
+	Behaviour::GetInstance().getLanesFromTxt("Presets//lanes.txt");
+	Behaviour::GetInstance().RegisterMob(mob1);
+	Behaviour::GetInstance().RegisterMob(mob2);
+	Behaviour::GetInstance().RegisterMob(mob3);
+
 	//all loaded close file and run!
 	levelPreset.close();
 }

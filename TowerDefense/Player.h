@@ -1,4 +1,6 @@
 #pragma once
+#include "UIText.h"
+
 class Player
 {
 public:
@@ -11,8 +13,10 @@ public:
 	void operator=(Player const&) = delete;
 	int getGold();
 	void addGold(int val);
+	void setGoldText(UIText* text);
 private:
 	Player(){};
 	int gold;
+	UIText* goldText;
 };
 
