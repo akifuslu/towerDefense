@@ -9,6 +9,7 @@
 #include "Behaviour.h"
 #include "Mob.h"
 #include "Player.h"
+#include "GameStateMachine.h"
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
 
 	InitWindow(screenWidth, screenHeight, "Tower Defense Pre-Alpha");
 	ResourceLoader::GetInstance().Load("Resources");
-	GameEntity background(GETTEXTURE("tutorial-background"), {0,0}, 0, 1);
+/*	GameEntity background(GETTEXTURE("tutorial-background"), {0,0}, 0, 1);
 	Towerspot spotOne(GETTEXTURE("towerspot"), { 607,226 }, 0, 1);
 	Towerspot spotTwo(GETTEXTURE("towerspot"), { 350,400 }, 0, 1);
 	Towerspot spotThree(GETTEXTURE("towerspot"), { 300,100 }, 0, 1);
@@ -37,12 +38,14 @@ int main()
 	TowerButtonHandler::GetInstance().AddButton(button2);
 	TowerButtonHandler::GetInstance().AddButton(button3);
 	Player::GetInstance().addGold(5500);
-	SetTargetFPS(60);
-	
+*/	SetTargetFPS(60);
+	GameStateMachine::GetInstance().LoadMainMenu();
 	while (!WindowShouldClose())
 	{
+		if (!GameStateMachine::GetInstance().GameLoop())
+			break;
 		//Update Method
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))//click test
+/*		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))//click test
 		{
 			InputHandler::GetInstance().HandleClick(GetMousePosition());
 		}
@@ -61,7 +64,7 @@ int main()
 		Behaviour::GetInstance().DrawEntities();
 		Behaviour::GetInstance().Update();
 		EndDrawing();
-	}
+*/	}
 
 	CloseWindow();
 

@@ -22,6 +22,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <math.h>
+#include <functional>
 
 #define GETTEXTURE(x) ResourceLoader::GetInstance().GetTexture(x)
 #define LOG(x) std::cout << x << std::endl;

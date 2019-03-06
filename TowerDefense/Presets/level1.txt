@@ -1,0 +1,8 @@
+background: level1-background
+spotCount: 5
+spotOnePos: 607 226
+spotTwoPos: 350 400
+spotThreePos: 300 100
+spotFourPos: 700 145
+spotFivePos: 250 300
+playerGold: 100000
