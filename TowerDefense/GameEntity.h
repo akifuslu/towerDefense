@@ -30,8 +30,8 @@ private:
 
 public:
 	//Default constructor
-	GameEntity(Texture2D& image, Vector2 coordinates = {0., 0.}, float rotation = 0., float scale = 1.)
-		: m_location(coordinates), m_scale(scale), m_rotation(rotation), m_image(image)
+	GameEntity(Texture2D& image, Vector2 coordinates = {0., 0.}, float rotation = 0., float scale = 1., bool active = true)
+		: m_location(coordinates), m_scale(scale), m_rotation(rotation), m_image(image), m_active(active)
 	{}
 
 	//Destructor
