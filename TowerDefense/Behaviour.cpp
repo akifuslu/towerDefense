@@ -94,7 +94,11 @@ void Behaviour::Update() {
 
 	for (auto & tower : towers)//To-Do: update all towers
 	{
-
+		if (tower->IsAttacking())//already attacking
+		{
+			tower->UpdateProjectile();
+			continue;
+		}
 		if (tower->getTarget() == NULL || tower->getTarget()->getHealth() <= 0) {
 
 			//get new target
@@ -138,7 +142,5 @@ void Behaviour::DrawEntities()
 	for (auto const& tower : towers)//draw all towers
 	{
 		tower->Draw();
-		if (tower->ammo.getLocation().x != tower->getLocation().x && tower->ammo.getLocation().y != tower->ammo.getLocation().y)
-			tower->ammo.Draw();
 	}
 }
