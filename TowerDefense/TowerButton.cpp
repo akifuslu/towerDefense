@@ -33,7 +33,7 @@ void TowerButton::Draw()
 	//now draw cost
 	Vector2 coinPos = getLocation();
 	coinPos.y -= 25;
-	DrawTextureEx(GETTEXTURE("coin"), coinPos, 0, 1, WHITE);
+	DrawTextureEx(*GETTEXTURE("coin"), coinPos, 0, 1, WHITE);
 	DrawText(std::to_string(cost).c_str(), getLocation().x + 25, getLocation().y - 20, 15, WHITE);
 }
 

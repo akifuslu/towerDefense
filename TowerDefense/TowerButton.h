@@ -7,11 +7,11 @@
 class TowerButton : public GameEntity, public Clickable
 {
 public:
-	TowerButton(Tower::TowerType towerType, const std::string& presetPath, const std::string& towerImage,Texture2D& image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1.)
+	TowerButton(Tower::TowerType towerType, const std::string& presetPath, const std::string& towerImage, Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1.)
 		:GameEntity(image, coordinates, rotation, scale)
 	{
 		SetClickAreaType(Rect);
-		UpdateClickArea(coordinates.x, coordinates.y, image.width, image.height);
+		UpdateClickArea(coordinates.x, coordinates.y, image->width, image->height);
 		type = towerType;
 		this->towerImage = towerImage;
 		LoadPreset(presetPath);

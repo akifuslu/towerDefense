@@ -7,7 +7,7 @@ class Mob : public GameEntity
 {
 public:
 
-	Mob(Texture2D& image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float speed = 1.)
+	Mob(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float speed = 1.)
 		: GameEntity(image, coordinates, rotation, scale), m_speed(speed), m_health(100)
 	{}
 

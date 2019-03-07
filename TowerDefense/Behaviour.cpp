@@ -124,9 +124,7 @@ void Behaviour::Update() {
 				}
 			}
 		}
-		if (tower->getTarget()) {
-			tower->getTarget()->updateHealth(tower->GetDamage());
-		}
+		tower->hitTarget();
 	}
 }
 

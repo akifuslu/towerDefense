@@ -4,7 +4,7 @@
 class UIText : public GameEntity
 {
 public:
-	UIText(const std::string& text, int fontSize, Color color, Texture2D& image, Vector2 relativePos, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., bool active = true)
+	UIText(const std::string& text, int fontSize, Color color, Texture2D* image, Vector2 relativePos, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., bool active = true)
 		: GameEntity(image, coordinates, rotation, scale, active)
 	{
 		this->text = text;

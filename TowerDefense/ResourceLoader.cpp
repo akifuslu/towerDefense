@@ -15,7 +15,7 @@ void ResourceLoader::Load(const std::string & directory)
 	}
 }
 
-Texture2D& ResourceLoader::GetTexture(const std::string & textureName)
+Texture2D* ResourceLoader::GetTexture(const std::string & textureName)
 {
-	return textures.find(textureName)->second;
+	return &textures.find(textureName)->second;
 }

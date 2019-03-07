@@ -21,7 +21,7 @@ void TowerButtonHandler::ShowButtons(Towerspot & spot)
 		btn->setStatus(true);
 		btn->setLocation(startPos);
 		startPos.x += 65;
-		btn->UpdateClickArea(btn->getLocation().x, btn->getLocation().y, btn->getImage().width, btn->getImage().height);
+		btn->UpdateClickArea(btn->getLocation().x, btn->getLocation().y, btn->getImage()->width, btn->getImage()->height);
 	}
 }
 

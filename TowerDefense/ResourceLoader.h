@@ -17,7 +17,7 @@ public:
 	ResourceLoader(ResourceLoader const&) = delete;
 	void operator=(ResourceLoader const&) = delete;
 	void Load(const std::string &directory);//Load all .png files from given directory
-	Texture2D& GetTexture(const std::string &textureName);//Get Texture2D by name
+	Texture2D* GetTexture(const std::string &textureName);//Get Texture2D by name
 private:
 	std::unordered_map<std::string, Texture2D> textures;
 	ResourceLoader() {};

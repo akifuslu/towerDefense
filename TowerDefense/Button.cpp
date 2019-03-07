@@ -28,8 +28,8 @@ void Button::Draw()
 		return;
 	GameEntity::Draw();//call base method
 	Vector2 textPos = getLocation();
-	textPos.x += getImage().width / 3;
-	textPos.y += getImage().height / 3;
+	textPos.x += getImage()->width / 3;
+	textPos.y += getImage()->height / 3;
 	DrawText(text.c_str(), textPos.x, textPos.y, 25, WHITE);
 }
 

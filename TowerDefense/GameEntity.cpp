@@ -5,7 +5,7 @@ void GameEntity::Draw()
 {
 	if (!m_active)
 		return;
-	DrawTextureEx(m_image, m_location, m_rotation, m_scale, WHITE);
+	DrawTextureEx(*m_image, m_location, m_rotation, m_scale, WHITE);
 }
 
 void GameEntity::Move(Vector2& moveVector)

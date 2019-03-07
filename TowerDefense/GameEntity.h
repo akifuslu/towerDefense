@@ -23,14 +23,14 @@ private:
 	Vector2 m_location;
 
 	//Name of the entity image
-	Texture2D& m_image;
+	Texture2D* m_image;
 
 	//Entity status
 	bool m_active;
 
 public:
 	//Default constructor
-	GameEntity(Texture2D& image, Vector2 coordinates = {0., 0.}, float rotation = 0., float scale = 1., bool active = true)
+	GameEntity(Texture2D* image, Vector2 coordinates = {0., 0.}, float rotation = 0., float scale = 1., bool active = true)
 		: m_location(coordinates), m_scale(scale), m_rotation(rotation), m_image(image), m_active(active)
 	{}
 
@@ -50,8 +50,8 @@ public:
 	Vector2 getLocation() const { return m_location; }
 	void    setLocation(const Vector2& newLocation) { m_location = newLocation; }
 
-	Texture2D& getImage() { return m_image; }
-	void      setImage(const Texture2D& newImage) { m_image = newImage; }
+	Texture2D* getImage() { return m_image; }
+	void      setImage(Texture2D* newImage) { m_image = newImage; }
 
 	bool getStatus() { return m_active; }
 	void setStatus(bool status) { m_active = status; }
