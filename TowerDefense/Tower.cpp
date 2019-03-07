@@ -30,22 +30,27 @@ void Tower::LevelUpgrade()
 
 void Tower::hitTarget()
 {
+
 	if (m_target) {
-		/*
+
 		//float ammo_rotation;
-		GameEntity ammo(ResourceLoader::GetInstance().GetTexture("arrow"), this->getLocation(), 0, 5);
 		float ammoDistToTarget = hypot(ammo.getLocation().x - m_target->getLocation().x,
 			ammo.getLocation().y - m_target->getLocation().y);
-		Vector2 ammoMoveVector = { (-ammo.getLocation().x + m_target->getLocation().x)/ammoDistToTarget,
-			(-ammo.getLocation().y + m_target->getLocation().y)/ammoDistToTarget };
+		Vector2 ammoMoveVector = { (ammo.getLocation().x - m_target->getLocation().x)/ammoDistToTarget,
+			(ammo.getLocation().y - m_target->getLocation().y)/ammoDistToTarget };
 
-		while (ammoDistToTarget > 100) {
+		if (ammoDistToTarget > 150) {
+
 			ammo.Move(ammoMoveVector);
 			ammoDistToTarget = hypot(ammo.getLocation().x - m_target->getLocation().x,
 				ammo.getLocation().y - m_target->getLocation().y);
-			ammo.Draw();
-		}*/
-		m_target->updateHealth(baseDamage);
+
+		}
+		else {
+			LOG("hit");
+			ammo.setLocation(this->getLocation());
+			m_target->updateHealth(baseDamage);
+		}
 	}
 }
 

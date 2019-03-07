@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "Behaviour.h"
 #include "Mob.h"
-#include "ResourceLoader.h"
 
 void Behaviour::RegisterMob(Mob * mobToAdd)
 {
 	int r = (rand() % 5);
 	mobToAdd->setLane(r);
+	mobToAdd->setLocation({pathLanes[r][0].x, mobToAdd->getLocation().y});
 	mobToAdd->setCurrentTarget(0);
 	mobs.push_back(mobToAdd);
 }
@@ -95,7 +95,6 @@ void Behaviour::Update() {
 	for (auto & tower : towers)//To-Do: update all towers
 	{
 
-
 		if (tower->getTarget() == NULL || tower->getTarget()->getHealth() <= 0) {
 
 			//get new target
@@ -139,5 +138,7 @@ void Behaviour::DrawEntities()
 	for (auto const& tower : towers)//draw all towers
 	{
 		tower->Draw();
+		if (tower->ammo.getLocation().x != tower->getLocation().x && tower->ammo.getLocation().y != tower->ammo.getLocation().y)
+			tower->ammo.Draw();
 	}
 }
