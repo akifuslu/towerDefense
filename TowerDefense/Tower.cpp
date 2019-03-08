@@ -55,11 +55,16 @@ void Tower::UpdateProjectile()
 	//float ammo_rotation;
 	float dist = hypot(projectile->getLocation().x - m_target->getLocation().x,
 		projectile->getLocation().y - m_target->getLocation().y);
-	Vector2 moveVector = { (-projectile->getLocation().x + m_target->getLocation().x) / dist,
-		(-projectile->getLocation().y + m_target->getLocation().y) / dist };
-	moveVector.x *= 6;
-	moveVector.y *= 6;
+	Vector2 moveVector = { (-projectile->getLocation().x + m_target->getLocation().x),
+		(-projectile->getLocation().y + m_target->getLocation().y)};
+	//normalize move vector
+	float len = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
+	moveVector.x /= len;
+	moveVector.y /= len;
+	moveVector.x *= 4;
+	moveVector.y *= 4;
 
+	projectile->setRotation((180/PI) * atan2(moveVector.y, moveVector.x));
 	if (dist > 10) {
 
 		projectile->Move(moveVector);

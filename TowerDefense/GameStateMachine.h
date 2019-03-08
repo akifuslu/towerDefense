@@ -29,5 +29,6 @@ private:
 	std::vector<GameEntity*> menuPanel;
 	std::vector<GameEntity*> levelPanel;
 	std::vector<GameEntity*> creditsPanel;
+	bool onLoad;
 };
 

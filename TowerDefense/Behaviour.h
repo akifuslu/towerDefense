@@ -12,13 +12,23 @@ private:
 	Behaviour() {};
 	
 	//Mobs we want to control
-	std::list<Mob*> mobs;
+	std::vector<Mob*> mobs;
+
+	//count of mobs in each wave
+	std::vector<int> waveMobCount;
+	int currentWave;
 
 	//Towers we want to control
 	std::list<Tower*> towers;
 
 	//Path lanes for mobs to walk
 	std::array<std::vector<Vector2>, 5> pathLanes;
+
+	//set mobs active in current wave
+	void StartWave();
+
+	//
+	int waitWave;
 
 public:
 	Behaviour(Behaviour const&) = delete;
@@ -34,6 +44,9 @@ public:
 
 	//Unregister from behaviour updates
 	void UnregisterMob(Mob* entity);
+
+	//Init waves on level
+	void SetWaves(std::vector<int> waveMobs);
 
 	//Read lanes from txt file.
 	void getLanesFromTxt(std::string filePath);

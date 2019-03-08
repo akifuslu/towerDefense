@@ -13,6 +13,7 @@
 
 void GameStateMachine::LoadMainMenu()
 {
+	onLoad = true;
 	//create buttons
 	Button* startBtn = new Button("Start Game", GETTEXTURE("button"), {330, 227});
 	Button* creditsBtn = new Button("Credits", GETTEXTURE("button"), { 330, 327 });
@@ -42,10 +43,13 @@ void GameStateMachine::LoadMainMenu()
 	levelPanel.push_back(levelBtn1);
 	//display menu panel
 	DisplayMenu();
+	onLoad = false;
 }
 
 void GameStateMachine::LoadLevel(int level)
 {
+	onLoad = true;
+	currentLevel = level;
 	std::string path = "Presets//level";
 	path += std::to_string(level) + ".txt";
 	std::ifstream levelPreset;
@@ -99,17 +103,27 @@ void GameStateMachine::LoadLevel(int level)
 	std::stringstream plGold(line);
 	plGold >> tmp >> gold;
 	Player::GetInstance().addGold(gold);
-	Mob* mob1 = new Mob(GETTEXTURE("mob"), { 480, -10 }, 0, 2, 1);
-	Mob* mob2 = new Mob(GETTEXTURE("mob"), { 470, -20 }, 0, 2, 1);
-	Mob* mob3 = new Mob(GETTEXTURE("mob"), { 490, -5 }, 0, 2, 1);
-
+	//parsing waves
 	Behaviour::GetInstance().getLanesFromTxt("Presets//lanes.txt");
-	Behaviour::GetInstance().RegisterMob(mob1);
-	Behaviour::GetInstance().RegisterMob(mob2);
-	Behaviour::GetInstance().RegisterMob(mob3);
-
+	int waveCount;
+	std::vector<int> waves;
+	std::getline(levelPreset, line);
+	std::stringstream waveC(line);
+	waveC >> tmp >> waveCount;
+	for (int i = 0; i < waveCount; i++)
+	{
+		int count = 0;
+		std::getline(levelPreset, line);
+		std::stringstream wave(line);
+		wave >> tmp >> count;
+		waves.push_back(count);
+		for(int j = 0; j < count; j++)
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0}, 0, 2, 1));
+	}
+	Behaviour::GetInstance().SetWaves(waves);
 	//all loaded close file and run!
 	levelPreset.close();
+	onLoad = false;
 }
 
 int GameStateMachine::CurrentLevel()
@@ -121,20 +135,24 @@ bool GameStateMachine::GameLoop()
 {
 	if (currentLevel == -1)//check if game exit
 		return false;
+	if (onLoad)//dont update anything on load
+		return true;
 	//Handle click events
 	if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
 		InputHandler::GetInstance().HandleClick(GetMousePosition());
 	}
 	//Update mob and tower behaviours
-	Behaviour::GetInstance().Update();
+	if(currentLevel != 0)
+		Behaviour::GetInstance().Update();
 	//Begin drawing
 	BeginDrawing();
 	ClearBackground(RAYWHITE);
 	//Draw static entities
 	DrawStaticEntities();
 	//Draw dynamic entities
-	Behaviour::GetInstance().DrawEntities();
+	if (currentLevel > 0 )
+		Behaviour::GetInstance().DrawEntities();
 	EndDrawing();
 	return true;
 }
