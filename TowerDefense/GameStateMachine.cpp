@@ -83,7 +83,7 @@ void GameStateMachine::LoadLevel(int level)
 	//load tower buttons
 	TowerButton* towerButton1 = new TowerButton(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("archer-icon"));
 	towerButton1->setStatus(false);
-	TowerButton* towerButton2 = new TowerButton(Tower::ARCHER, "Presets//magic.txt", "tower", GETTEXTURE("magic-icon"));
+	TowerButton* towerButton2 = new TowerButton(Tower::ARCHER, "Presets//magic.txt", "tower-magic", GETTEXTURE("magic-icon"));
 	towerButton2->setStatus(false);
 	TowerButton* towerButton3 = new TowerButton(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("archer-icon"));
 	towerButton3->setStatus(false);
