@@ -97,12 +97,22 @@ void GameStateMachine::LoadLevel(int level)
 	UIText* playerGold = new UIText("0", 25, WHITE, GETTEXTURE("coin"), { 40, 5 }, { 10, 10 }, 0, 1.5f);
 	Player::GetInstance().setGoldText(playerGold);
 	staticEntities.push_back(playerGold);
+	
+	UIText* playerHealth = new UIText("0", 25, WHITE, GETTEXTURE("health"), { 45, 5 }, { 800, 10 }, 0, 1.5f);
+	Player::GetInstance().setHealthText(playerHealth);
+	staticEntities.push_back(playerHealth);
 	//load initial player gold
 	std::getline(levelPreset, line);
 	int gold;
 	std::stringstream plGold(line);
 	plGold >> tmp >> gold;
 	Player::GetInstance().addGold(gold);
+	//load initial player health
+	std::getline(levelPreset, line);
+	int health;
+	std::stringstream plHealth(line);
+	plHealth >> tmp >> health;
+	Player::GetInstance().setHealth(health);
 	//parsing waves
 	Behaviour::GetInstance().getLanesFromTxt("Presets//lanes.txt");
 	int waveCount;

@@ -14,9 +14,16 @@ public:
 	int getGold();
 	void addGold(int val);
 	void setGoldText(UIText* text);
+
+	int getHealth();
+	void setHealth(int val);
+	void loseHealth();
+	void setHealthText(UIText* text);
 private:
 	Player(){};
 	int gold;
 	UIText* goldText;
+	int health;
+	UIText* healthText;
 };
 

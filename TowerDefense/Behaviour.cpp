@@ -2,6 +2,7 @@
 #include "Behaviour.h"
 #include "Mob.h"
 #include "GameStateMachine.h"
+#include "Player.h"
 
 void Behaviour::StartWave()
 {
@@ -111,6 +112,10 @@ void Behaviour::Update() {
 			else
 			{
 				//player loses 1 point and mob refreshes
+				Player::GetInstance().loseHealth();
+				if (Player::GetInstance().getHealth() <= 0) {
+					GameStateMachine::GetInstance().ExitGame();
+				}
 			}
 		}
 
