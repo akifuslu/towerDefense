@@ -129,12 +129,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Archer.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Clickable.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Magic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mob.cpp" />
     <ClCompile Include="pch.cpp">
@@ -150,12 +152,14 @@
     <ClCompile Include="UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Archer.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Clickable.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Magic.h" />
     <ClInclude Include="Mob.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />

@@ -193,7 +193,7 @@ void Behaviour::Update() {
 					if (hypot(mob->getLocation().x - tower->getLocation().x,
 						mob->getLocation().y - tower->getLocation().y) < tower->GetRange()) {
 						tower->setTarget(mob);
-						tower->UpdateProjectile();
+						break;
 					}
 				}
 			}

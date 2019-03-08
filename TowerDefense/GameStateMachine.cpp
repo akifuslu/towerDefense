@@ -143,8 +143,6 @@ int GameStateMachine::CurrentLevel()
 
 bool GameStateMachine::GameLoop()
 {
-	if (currentLevel == -1)//check if game exit
-		return false;
 	if (onLoad)//dont update anything on load
 		return true;
 	//Handle click events
@@ -152,8 +150,10 @@ bool GameStateMachine::GameLoop()
 	{
 		InputHandler::GetInstance().HandleClick(GetMousePosition());
 	}
+	if (currentLevel == -1)//check if game exit
+		return false;
 	//Update mob and tower behaviours
-	if(currentLevel != 0)
+	if(currentLevel > 0)
 		Behaviour::GetInstance().Update();
 	//Begin drawing
 	BeginDrawing();
