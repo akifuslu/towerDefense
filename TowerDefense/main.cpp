@@ -13,8 +13,8 @@
 
 int main()
 {
-	int screenWidth = 1024;
-	int screenHeight = 512;
+	int screenWidth = SCREENWIDTH;
+	int screenHeight = SCREENHEIGHT;
 
 	InitWindow(screenWidth, screenHeight, "Tower Defense Pre-Alpha");
 	SetTargetFPS(60);

@@ -77,8 +77,10 @@ void Tower::UpdateProjectile()
 	else {
 		projectile->setStatus(false);
 		m_target->updateHealth(baseDamage);
+		/*
 		LOG(projectile->getLocation().x << "," << projectile->getLocation().y);
 		LOG(m_target->getHealth());
+		*/
 		isAttacking = false;
 	}
 }
