@@ -87,6 +87,8 @@ void Behaviour::Update() {
 	int mobCounter = 0;
 	for (int i = mobs.size() - 1; i > (int)mobs.size() - waveMobCount[currentWave] - 1; i--)
 	{
+		if (!mobs[i]->getStatus())//amk pasifi
+			continue;
 		if (mobs[i]->getHealth() <= 0) {
 			//öldü.
 			mobCounter++;
@@ -101,7 +103,7 @@ void Behaviour::Update() {
 
 		float length = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
 
-		if (length < 1) {
+		if (length < 5) {
 			if (pathLanes[mobs[i]->getLane()].size() > (unsigned int)(mobs[i]->getCurrentTarget()+1))
 			{
 				mobs[i]->setCurrentTarget(mobs[i]->getCurrentTarget()+1);
@@ -113,6 +115,7 @@ void Behaviour::Update() {
 			{
 				//player loses 1 point and mob refreshes
 				Player::GetInstance().loseHealth();
+				mobs[i]->setStatus(false);
 				if (Player::GetInstance().getHealth() <= 0) {
 					GameStateMachine::GetInstance().ExitGame();
 				}

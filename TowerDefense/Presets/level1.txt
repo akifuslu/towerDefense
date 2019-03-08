@@ -6,7 +6,7 @@ spotThreePos: 300 100
 spotFourPos: 700 145
 spotFivePos: 250 300
 playerGold: 100000
-playerHealth: 2
+playerHealth: 9
 waveCount: 3
 thirdWave: 5
 secondWave: 3

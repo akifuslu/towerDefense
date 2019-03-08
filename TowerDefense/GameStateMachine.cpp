@@ -85,7 +85,7 @@ void GameStateMachine::LoadLevel(int level)
 	towerButton1->setStatus(false);
 	TowerButton* towerButton2 = new TowerButton(Tower::ARCHER, "Presets//magic.txt", "tower-magic", GETTEXTURE("magic-icon"));
 	towerButton2->setStatus(false);
-	TowerButton* towerButton3 = new TowerButton(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("archer-icon"));
+	TowerButton* towerButton3 = new TowerButton(Tower::ARCHER, "Presets//archer.txt", "tower-bombard", GETTEXTURE("archer-icon"));
 	towerButton3->setStatus(false);
 	TowerButtonHandler::GetInstance().AddButton(*towerButton1);
 	TowerButtonHandler::GetInstance().AddButton(*towerButton2);
