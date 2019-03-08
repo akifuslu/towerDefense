@@ -30,7 +30,7 @@ void Behaviour::SetWaves(std::vector<int> waveMobs)
 {
 	waveMobCount = waveMobs;
 	currentWave = waveMobCount.size() - 1;
-	for (int i = 0; i < mobs.size(); i++)
+	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
 		mobs[i]->setStatus(false);
 	}
@@ -131,7 +131,19 @@ void Behaviour::Update() {
 		{ 
 			mobs.erase(mobs.begin() + i);
 		}
+
+		for (auto & tower : towers)//To-Do: update all towers
+		{
+			/*tower->projectile->setLocation(tower->getLocation());
+			tower->IsAttacking = false;*/
+
+			tower->setTarget(NULL);
+			tower->UpdateProjectile();
+		
+		}
+
 		currentWave--;
+
 		if (currentWave < 0)//re implement this
 			GameStateMachine::GetInstance().ExitGame();
 		else
@@ -148,8 +160,11 @@ void Behaviour::Update() {
 		}
 		if (tower->getTarget() == NULL || tower->getTarget()->getHealth() <= 0) {
 
-			//get new target
+			if (tower->getTarget() && tower->getTarget()->getHealth() <= 0) {
+				tower->setTarget(NULL);
+			}
 
+			//get new target
 			for (auto & mob : mobs) {
 				if (mob->getHealth() <= 0)
 					continue;
@@ -170,6 +185,7 @@ void Behaviour::Update() {
 					if (hypot(mob->getLocation().x - tower->getLocation().x,
 						mob->getLocation().y - tower->getLocation().y) < tower->GetRange()) {
 						tower->setTarget(mob);
+						tower->UpdateProjectile();
 					}
 				}
 			}

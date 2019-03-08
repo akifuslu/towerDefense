@@ -30,7 +30,7 @@ void Tower::LevelUpgrade()
 
 void Tower::hitTarget()
 {
-	if (!m_target)//no target
+	if (!m_target || m_target->getLocation().y < 0)//no target
 		return;
 	isAttacking = true;
 	projectile->setStatus(true);
@@ -51,12 +51,18 @@ bool Tower::IsAttacking()
 void Tower::UpdateProjectile()
 {
 	if (!m_target)//no target
+	{
+		projectile->setLocation(getLocation());
+		projectile->setStatus(false);
+		isAttacking = false;
 		return;
-	//float ammo_rotation;
+	}
+
 	float dist = hypot(projectile->getLocation().x - m_target->getLocation().x,
 		projectile->getLocation().y - m_target->getLocation().y);
 	Vector2 moveVector = { (-projectile->getLocation().x + m_target->getLocation().x),
 		(-projectile->getLocation().y + m_target->getLocation().y)};
+
 	//normalize move vector
 	float len = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
 	moveVector.x /= len;
@@ -65,13 +71,14 @@ void Tower::UpdateProjectile()
 	moveVector.y *= 4;
 
 	projectile->setRotation((180/PI) * atan2(moveVector.y, moveVector.x));
-	if (dist > 10) {
-
+	if (dist > 20) {
 		projectile->Move(moveVector);
 	}
 	else {
 		projectile->setStatus(false);
 		m_target->updateHealth(baseDamage);
+		LOG(projectile->getLocation().x << "," << projectile->getLocation().y);
+		LOG(m_target->getHealth());
 		isAttacking = false;
 	}
 }

@@ -11,7 +11,7 @@ public:
 	Tower(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float range = 0, float delay = 0, int baseDamage = 0)
 		:GameEntity(image, coordinates, rotation, scale), range(range), delay(delay), baseDamage(baseDamage), level(1), m_target(NULL)
 	{
-		projectile = new GameEntity(GETTEXTURE("arrow"), {0,0}, 0, 2);
+		projectile = new GameEntity(GETTEXTURE("arrow"), {0,0}, 0, (float)0.03);
 		projectile->setStatus(false);
 		isAttacking = false;
 	}
