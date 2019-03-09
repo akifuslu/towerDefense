@@ -8,9 +8,14 @@ float Tower::GetRange()
 	return range;
 }
 
-float Tower::GetDelay()
+int Tower::GetCooldown()
 {
-	return delay;
+	return cooldown--;
+}
+
+void Tower::ResetCooldown()
+{
+	cooldown = delay;
 }
 
 int Tower::GetDamage()
@@ -26,6 +31,7 @@ void Tower::LevelUpgrade()
 
 void Tower::hitTarget()
 {
+	ResetCooldown();
 }
 
 Mob * Tower::getTarget()

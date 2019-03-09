@@ -12,6 +12,7 @@ public:
 		:GameEntity(image, coordinates, rotation, scale), range(range), delay(delay), baseDamage(baseDamage), level(1), m_target(NULL)
 	{
 		isAttacking = false;
+		cooldown = 0;
 	}
 
 	~Tower() 
@@ -19,7 +20,8 @@ public:
 	}
 
 	float GetRange();
-	float GetDelay();
+	int GetCooldown();
+	void ResetCooldown();
 	int GetDamage();
 	void LevelUpgrade();
 
@@ -38,7 +40,8 @@ protected:
 	Mob* m_target;
 	bool isAttacking;
 	float range;
-	float delay;
+	int delay;
+	int cooldown;
 	int baseDamage;
 };
 
