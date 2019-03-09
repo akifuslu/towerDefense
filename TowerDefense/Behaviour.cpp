@@ -87,14 +87,12 @@ void Behaviour::Update() {
 	int mobCounter = 0;
 	for (int i = mobs.size() - 1; i > (int)mobs.size() - waveMobCount[currentWave] - 1; i--)
 	{
-		if (!mobs[i]->getStatus())//amk pasifi
-			continue;
 		if (mobs[i]->getHealth() <= 0) {
-			//öldü.
 			mobCounter++;
-			//2-3 saniye dinlendirip deaktive et.
 			continue;
 		}
+		if (!mobs[i]->getStatus())//amk pasifi
+			continue;
 
 		Vector2 moveVector;
 		moveVector.x = pathLanes[mobs[i]->getLane()][mobs[i]->getCurrentTarget()].x - mobs[i]->getLocation().x;
@@ -102,7 +100,7 @@ void Behaviour::Update() {
 
 		float length = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
 
-		if (length < 1) {
+		if (length < 10) {
 			if (pathLanes[mobs[i]->getLane()].size() > (unsigned int)(mobs[i]->getCurrentTarget()+1))
 			{
 				mobs[i]->setCurrentTarget(mobs[i]->getCurrentTarget()+1);
@@ -114,10 +112,7 @@ void Behaviour::Update() {
 			{
 				//player loses 1 point and mob refreshes
 				Player::GetInstance().loseHealth();
-				mobs[i]->setStatus(false);
-
 				mobCounter++;
-
 				if (Player::GetInstance().getHealth() <= 0) {
 					GameStateMachine::GetInstance().ExitGame();
 				}
@@ -133,12 +128,13 @@ void Behaviour::Update() {
 	}
 
 	//check if wave cleared
-	if (mobCounter == waveMobCount[currentWave])
+	if (mobCounter >= waveMobCount[currentWave])
 	{
 		waitWave = 180;//wait three seconds for new wave
 		int tmp = mobs.size();
 		for (int i = mobs.size() - 1; i > tmp - waveMobCount[currentWave] - 1; i--)
-		{ 
+		{
+			delete mobs[i];
 			mobs.erase(mobs.begin() + i);
 		}
 

@@ -12,7 +12,10 @@ public:
 		projectile = new GameEntity(GETTEXTURE("arrow"), { 0,0 }, 0, (float)0.03);
 		projectile->setStatus(false);
 	}
-	~Archer() {};
+	~Archer() 
+	{
+		delete projectile;
+	};
 	void hitTarget() override;
 	void UpdateProjectile() override;
 	void Draw() override;

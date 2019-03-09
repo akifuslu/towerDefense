@@ -1,4 +1,8 @@
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include "pch.h"
+
 #include "GameEntity.h"
 #include "ResourceLoader.h"
 #include "InputHandler.h"
@@ -25,8 +29,8 @@ int main()
 		if (!GameStateMachine::GetInstance().GameLoop())
 			break;
 	}
-
+	
 	CloseWindow();
-
+	_CrtDumpMemoryLeaks();
 	return 0;
 }

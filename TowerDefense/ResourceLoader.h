@@ -21,6 +21,11 @@ public:
 private:
 	std::unordered_map<std::string, Texture2D> textures;
 	ResourceLoader() {};
+	~ResourceLoader() 
+	{
+		for (auto & i : textures)
+			UnloadTexture(i.second);
+	};
 };
 
 

@@ -19,6 +19,10 @@ public:
 	void ExitGame();
 private:
 	GameStateMachine() {};
+	~GameStateMachine() 
+	{
+		ClearStaticEntities();
+	};
 	int currentLevel;//-1 game closed, 0 main menu, 1,2.. levels
 	std::list<GameEntity*> staticEntities;
 	void DrawStaticEntities();

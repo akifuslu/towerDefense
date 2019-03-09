@@ -180,7 +180,7 @@ void GameStateMachine::DrawStaticEntities()
 
 void GameStateMachine::ClearStaticEntities()
 {
-	for (auto const& entity : staticEntities)
+	for (auto & entity : staticEntities)
 		delete entity;
 	staticEntities.clear();
 }

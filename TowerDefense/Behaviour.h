@@ -10,7 +10,12 @@ class Behaviour
 {
 private:
 	Behaviour() {};
-	
+	~Behaviour() 
+	{
+		for (auto & i : towers)
+			delete i;
+		towers.clear();
+	};
 	//Mobs we want to control
 	std::vector<Mob*> mobs;
 

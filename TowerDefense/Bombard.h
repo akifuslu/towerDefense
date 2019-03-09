@@ -11,7 +11,10 @@ public:
 		projectile->setStatus(false);
 		frameCounter = 0;
 	}
-	~Bombard() {};
+	~Bombard() 
+	{
+		delete projectile;
+	};
 	void hitTarget() override;
 	void UpdateProjectile() override;
 	void Draw() override;
