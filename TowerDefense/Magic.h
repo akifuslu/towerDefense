@@ -25,5 +25,6 @@ private:
 	Rectangle srcRect;
 	Rectangle destRect;
 	int frameCounter;
+	int beamStartPos;
 };
 

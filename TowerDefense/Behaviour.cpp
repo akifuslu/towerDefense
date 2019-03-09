@@ -169,6 +169,8 @@ void Behaviour::Update() {
 			tower->UpdateProjectile();
 			continue;
 		}
+		if (tower->GetCooldown() > 0)//cant attack right now
+			continue;
 		if (tower->getTarget() == NULL || tower->getTarget()->getHealth() <= 0) {
 
 			if (tower->getTarget() && tower->getTarget()->getHealth() <= 0) {
