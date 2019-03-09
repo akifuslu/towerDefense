@@ -20,6 +20,7 @@ public:
 	void hitTarget() override;
 	void UpdateProjectile() override;
 	void Draw() override;
+	GameEntity* getproj() { return projectile; }
 private:
 	GameEntity* projectile;
 	Rectangle srcRect;

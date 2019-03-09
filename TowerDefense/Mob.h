@@ -8,7 +8,7 @@ class Mob : public GameEntity
 public:
 
 	Mob(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float speed = 1.)
-		: GameEntity(image, coordinates, rotation, scale), m_speed(speed), m_health(100)
+		: GameEntity(image, coordinates, rotation, scale), m_speed(speed), m_health(100), m_isDead(false), m_cost(250)
 	{}
 
 	//Getters & Setters
@@ -26,6 +26,10 @@ public:
 	void setCurrentTarget(int newTarget);
 
 private:
+
+	bool m_isDead;
+
+	int m_cost;
 
 	//Current Health
 	int m_health;

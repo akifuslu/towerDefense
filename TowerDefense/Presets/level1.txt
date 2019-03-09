@@ -1,13 +1,16 @@
 background: level1-background
-spotCount: 5
-spotOnePos: 607 226
-spotTwoPos: 350 400
-spotThreePos: 300 100
-spotFourPos: 700 145
-spotFivePos: 250 300
-playerGold: 100000
-playerHealth: 9
-waveCount: 3
-thirdWave: 5
-secondWave: 3
-firstWave: 2
+spotCount: 6
+spotOnePos: 370 180
+spotTwoPos: 570 180
+spotThreePos: 370 380
+spotFourPos: 570 380
+spotFivePos: 370 580
+spotSixPos: 570 580
+playerGold: 300
+playerHealth: 10
+waveCount: 5
+fifthWave: 12
+fourthWave: 7
+thirdWave: 4
+secondWave: 2
+firstWave: 1
