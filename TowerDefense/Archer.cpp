@@ -8,6 +8,8 @@ void Archer::hitTarget()
 	isAttacking = true;
 	projectile->setStatus(true);
 	projectile->setLocation(this->getLocation());
+	
+	UpdateProjectile();
 }
 
 void Archer::UpdateProjectile()

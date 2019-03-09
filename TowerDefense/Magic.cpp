@@ -7,15 +7,17 @@ void Magic::hitTarget()
 		return;
 	isAttacking = true;
 	projectile->setStatus(true);
-	projectile->setLocation(this->getLocation());
+	projectile->setLocation({ getLocation().x + 30, getLocation().y+15 });
 	frameCounter = 120;
+
+	UpdateProjectile(); //glitch avoided
 }
 
 void Magic::UpdateProjectile()
 {
 	if (!m_target)//no target
 	{
-		projectile->setLocation(getLocation());
+		projectile->setLocation({ getLocation().x+30, getLocation().y+15 });
 		projectile->setStatus(false);
 		isAttacking = false;
 		return;
@@ -32,11 +34,17 @@ void Magic::UpdateProjectile()
 	srcRect.width = dist;
 	destRect.width = dist;
 	frameCounter--;
+
 	if (frameCounter % 2 == 0)
 	{
 		srcRect.x -= 10;
 		if (srcRect.x < 0)
 			srcRect.x = projectile->getImage()->width;
+	}
+	if (frameCounter % 60 == 0) {
+		projectile->setStatus(false);
+		m_target->updateHealth(baseDamage);
+		isAttacking = false;
 	}
 }
 

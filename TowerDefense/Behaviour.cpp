@@ -116,6 +116,9 @@ void Behaviour::Update() {
 				//player loses 1 point and mob refreshes
 				Player::GetInstance().loseHealth();
 				mobs[i]->setStatus(false);
+				
+				mobCounter++;
+
 				if (Player::GetInstance().getHealth() <= 0) {
 					GameStateMachine::GetInstance().ExitGame();
 				}
@@ -191,7 +194,7 @@ void Behaviour::Update() {
 
 				for (auto & mob : mobs) {
 					if (hypot(mob->getLocation().x - tower->getLocation().x,
-						mob->getLocation().y - tower->getLocation().y) < tower->GetRange()) {
+						mob->getLocation().y - tower->getLocation().y) < tower->GetRange() && mob->getHealth() > 0) {
 						tower->setTarget(mob);
 						break;
 					}
