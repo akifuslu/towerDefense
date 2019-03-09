@@ -24,8 +24,8 @@
 #include <math.h>
 #include <functional>
 
-#define SCREENHEIGHT 512
-#define SCREENWIDTH 1024
+#define SCREENHEIGHT 768
+#define SCREENWIDTH  1024
 
 #define GETTEXTURE(x) ResourceLoader::GetInstance().GetTexture(x)
 #define LOG(x) std::cout << x << std::endl;

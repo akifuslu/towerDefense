@@ -16,7 +16,7 @@ int main()
 	int screenWidth = SCREENWIDTH;
 	int screenHeight = SCREENHEIGHT;
 
-	InitWindow(screenWidth, screenHeight, "Tower Defense Pre-Alpha");
+	InitWindow(screenWidth, screenHeight, "Tower Defense Alpha 0.0");
 	SetTargetFPS(60);
 	ResourceLoader::GetInstance().Load("Resources");
 	GameStateMachine::GetInstance().LoadMainMenu();

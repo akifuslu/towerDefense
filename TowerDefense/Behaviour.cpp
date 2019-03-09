@@ -92,7 +92,6 @@ void Behaviour::Update() {
 		if (mobs[i]->getHealth() <= 0) {
 			//öldü.
 			mobCounter++;
-			mobs[i]->setImage(ResourceLoader::GetInstance().GetTexture("mobdead"));
 			//2-3 saniye dinlendirip deaktive et.
 			continue;
 		}
@@ -103,7 +102,7 @@ void Behaviour::Update() {
 
 		float length = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
 
-		if (length < 5) {
+		if (length < 1) {
 			if (pathLanes[mobs[i]->getLane()].size() > (unsigned int)(mobs[i]->getCurrentTarget()+1))
 			{
 				mobs[i]->setCurrentTarget(mobs[i]->getCurrentTarget()+1);
@@ -116,7 +115,7 @@ void Behaviour::Update() {
 				//player loses 1 point and mob refreshes
 				Player::GetInstance().loseHealth();
 				mobs[i]->setStatus(false);
-				
+
 				mobCounter++;
 
 				if (Player::GetInstance().getHealth() <= 0) {
@@ -178,12 +177,12 @@ void Behaviour::Update() {
 			}
 
 			//get new target
-			for (auto & mob : mobs) {
-				if (mob->getHealth() <= 0)
+			for (int i = mobs.size() - 1; i > (int)mobs.size() - waveMobCount[currentWave] - 1; i--) {
+				if (mobs[i]->getHealth() <= 0)
 					continue;
-				if (hypot(mob->getLocation().x - tower->getLocation().x,
-					mob->getLocation().y - tower->getLocation().y) < tower->GetRange()) {
-					tower->setTarget(mob);
+				if (hypot(mobs[i]->getLocation().x - tower->getLocation().x,
+					mobs[i]->getLocation().y - tower->getLocation().y) < tower->GetRange()) {
+					tower->setTarget(mobs[i]);
 				}
 			}
 		}
@@ -194,10 +193,10 @@ void Behaviour::Update() {
 
 			if (distToTarget > tower->GetRange()) {
 
-				for (auto & mob : mobs) {
-					if (hypot(mob->getLocation().x - tower->getLocation().x,
-						mob->getLocation().y - tower->getLocation().y) < tower->GetRange() && mob->getHealth() > 0) {
-						tower->setTarget(mob);
+				for (int i = mobs.size() - 1; i > (int)mobs.size() - waveMobCount[currentWave] - 1; i--) {
+					if (hypot(mobs[i]->getLocation().x - tower->getLocation().x,
+						mobs[i]->getLocation().y - tower->getLocation().y) < tower->GetRange() && mobs[i]->getHealth() > 0) {
+						tower->setTarget(mobs[i]);
 						break;
 					}
 				}
