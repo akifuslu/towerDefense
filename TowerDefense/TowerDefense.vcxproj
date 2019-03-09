@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Archer.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="Bombard.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Clickable.cpp" />
     <ClCompile Include="GameEntity.cpp" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="Archer.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="Bombard.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Clickable.h" />
     <ClInclude Include="GameEntity.h" />

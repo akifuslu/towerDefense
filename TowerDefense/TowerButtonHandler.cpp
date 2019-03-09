@@ -3,6 +3,7 @@
 #include "Tower.h"
 #include "Archer.h"
 #include "Magic.h"
+#include "Bombard.h"
 #include "ResourceLoader.h"
 #include "Behaviour.h"
 
@@ -50,7 +51,7 @@ void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::strin
 		Behaviour::GetInstance().RegisterTower((new Archer(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));
 	}
 	else if (towerType == 1) {
-
+		Behaviour::GetInstance().RegisterTower((new Bombard(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));
 	}
 	else {
 		Behaviour::GetInstance().RegisterTower((new Magic(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));

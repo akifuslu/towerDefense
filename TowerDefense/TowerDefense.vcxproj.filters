@@ -55,6 +55,9 @@
     <ClCompile Include="Magic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Bombard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behaviour.h">
@@ -106,6 +109,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Magic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bombard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
