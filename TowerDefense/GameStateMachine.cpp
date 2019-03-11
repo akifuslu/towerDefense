@@ -30,11 +30,11 @@ void GameStateMachine::LoadMainMenu()
 	levelBackBtn->AddEvent(dispMenu);
 	levelBtn1->AddEvent(loadLevel, 1);	
 	//register buttons for drawing
-	staticEntities.push_back(startBtn);
-	staticEntities.push_back(creditsBtn);
-	staticEntities.push_back(exitBtn);
-	staticEntities.push_back(levelBackBtn);
-	staticEntities.push_back(levelBtn1);
+	uiEntities.push_back(startBtn);
+	uiEntities.push_back(creditsBtn);
+	uiEntities.push_back(exitBtn);
+	uiEntities.push_back(levelBackBtn);
+	uiEntities.push_back(levelBtn1);
 	//register buttons to panels
 	menuPanel.push_back(startBtn);
 	menuPanel.push_back(creditsBtn);
@@ -60,6 +60,7 @@ void GameStateMachine::LoadLevel(int level)
 		return;
 	}
 	ClearStaticEntities();
+	ClearUIEntities();
 	//parse level preset
 	std::string line, tmp, strVal;
 	std::getline(levelPreset, line);
@@ -90,17 +91,31 @@ void GameStateMachine::LoadLevel(int level)
 	TowerButtonHandler::GetInstance().AddButton(*towerButton1);
 	TowerButtonHandler::GetInstance().AddButton(*towerButton2);
 	TowerButtonHandler::GetInstance().AddButton(*towerButton3);
-	staticEntities.push_back(towerButton1);
-	staticEntities.push_back(towerButton2);
-	staticEntities.push_back(towerButton3);
+	uiEntities.push_back(towerButton1);
+	uiEntities.push_back(towerButton2);
+	uiEntities.push_back(towerButton3);
+	//load pause button
+	Button* pauseButton = new Button("", GETTEXTURE("pause-button"), { 20,700 });
+	std::function<void()> pause = std::bind(&GameStateMachine::PauseGame, this);
+	pauseButton->AddEvent(pause);
+	uiEntities.push_back(pauseButton);
+	//load pause panel
+	GameEntity* pausePanelBack = new GameEntity(GETTEXTURE("pause-panel"), {230,240}, 0, 1, false);
+	Button* resumeButton = new Button("", GETTEXTURE("play-button"), { 500, 350 }, 0, 1);
+	resumeButton->setStatus(false);
+	std::function<void()> resume = std::bind(&GameStateMachine::ResumeGame, this);
+	resumeButton->AddEvent(resume);
+	uiEntities.push_back(pausePanelBack);
+	uiEntities.push_back(resumeButton);
+	pausePanel.push_back(pausePanelBack);
+	pausePanel.push_back(resumeButton);
 	//display user stats
 	UIText* playerGold = new UIText("0", 25, WHITE, GETTEXTURE("coin"), { 40, 5 }, { 10, 10 }, 0, 1.5f);
 	Player::GetInstance().setGoldText(playerGold);
-	staticEntities.push_back(playerGold);
-	
+	uiEntities.push_back(playerGold);	
 	UIText* playerHealth = new UIText("0", 25, WHITE, GETTEXTURE("health"), { 45, 5 }, { 800, 10 }, 0, 1.5f);
 	Player::GetInstance().setHealthText(playerHealth);
-	staticEntities.push_back(playerHealth);
+	uiEntities.push_back(playerHealth);
 	//load initial player gold
 	std::getline(levelPreset, line);
 	int gold;
@@ -153,7 +168,7 @@ bool GameStateMachine::GameLoop()
 	if (currentLevel == -1)//check if game exit
 		return false;
 	//Update mob and tower behaviours
-	if(currentLevel > 0)
+	if(currentLevel > 0 && onPause == false)
 		Behaviour::GetInstance().Update();
 	//Begin drawing
 	BeginDrawing();
@@ -163,6 +178,8 @@ bool GameStateMachine::GameLoop()
 	//Draw dynamic entities
 	if (currentLevel > 0 )
 		Behaviour::GetInstance().DrawEntities();
+	//Draw ui entities
+	DrawUIEntities();
 	EndDrawing();
 	return true;
 }
@@ -172,9 +189,32 @@ void GameStateMachine::ExitGame()
 	currentLevel = -1;
 }
 
+void GameStateMachine::PauseGame()
+{
+	onPause = true;
+	DisplayPause(true);
+}
+
+void GameStateMachine::ResumeGame()
+{
+	onPause = false;
+	DisplayPause(false);
+}
+
+bool GameStateMachine::OnPause()
+{
+	return onPause;
+}
+
 void GameStateMachine::DrawStaticEntities()
 {
 	for (auto const& entity : staticEntities)
+		entity->Draw();
+}
+
+void GameStateMachine::DrawUIEntities()
+{
+	for (auto const& entity : uiEntities)
 		entity->Draw();
 }
 
@@ -183,6 +223,13 @@ void GameStateMachine::ClearStaticEntities()
 	for (auto & entity : staticEntities)
 		delete entity;
 	staticEntities.clear();
+}
+
+void GameStateMachine::ClearUIEntities()
+{
+	for (auto & entity : uiEntities)
+		delete entity;
+	uiEntities.clear();
 }
 
 void GameStateMachine::DisplayMenu()
@@ -213,4 +260,12 @@ void GameStateMachine::DisplayCredits()
 		item->setStatus(true);
 	for (auto const& item : levelPanel)
 		item->setStatus(false);
+}
+
+void GameStateMachine::DisplayPause(bool disp)
+{
+	for (auto & item : pausePanel)
+	{
+		item->setStatus(disp);
+	}
 }

@@ -4,9 +4,12 @@
 #include "Tower.h"
 #include "ResourceLoader.h"
 #include "Player.h"
+#include "GameStateMachine.h"
 
 void TowerButton::OnClick()
 {
+	if (GameStateMachine::GetInstance().OnPause())//game currently paused do not build tower
+		return;
 	if (Player::GetInstance().getGold() < cost)
 	{
 		LOG("not enough gold!");
