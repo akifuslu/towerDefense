@@ -1,8 +1,11 @@
 #include "pch.h"
 #include "Button.h"
+#include "ResourceLoader.h"
 
-void Button::OnClick()
+bool Button::OnClick()
 {
+	if (!getStatus())//disabled button
+		return false;
 	switch (currentFunc)
 	{
 	case -1:
@@ -20,6 +23,7 @@ void Button::OnClick()
 	default:
 		break;
 	}
+	return true;
 }
 
 void Button::Draw()
@@ -27,10 +31,7 @@ void Button::Draw()
 	if (getStatus() == false)
 		return;
 	GameEntity::Draw();//call base method
-	Vector2 textPos = getLocation();
-	textPos.x += getImage()->width / 3;
-	textPos.y += getImage()->height / 3;
-	DrawText(text.c_str(), textPos.x, textPos.y, 25, WHITE);
+	DrawTextEx(DEFAULTFONT, text.c_str(), textPos, 30, 1, WHITE);
 }
 
 void Button::AddEvent(std::function<void(int)> func, int val)

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "UIText.h"
+#include "ResourceLoader.h"
 
 void UIText::Draw()
 {
@@ -9,7 +10,7 @@ void UIText::Draw()
 	Vector2 pos = getLocation();
 	pos.x += relativePos.x;
 	pos.y += relativePos.y;
-	DrawText(text.c_str(), pos.x, pos.y, fontSize, color);
+	DrawTextEx(DEFAULTFONT, text.c_str(), pos, fontSize, 1, color);
 }
 
 void UIText::UpdateText(const std::string &text)

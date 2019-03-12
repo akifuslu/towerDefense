@@ -28,6 +28,7 @@
 #define SCREENWIDTH  1024
 
 #define GETTEXTURE(x) ResourceLoader::GetInstance().GetTexture(x)
+#define DEFAULTFONT ResourceLoader::GetInstance().GetFont()
 #define LOG(x) std::cout << x << std::endl;
 
 #endif //PCH_H

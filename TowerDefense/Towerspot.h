@@ -20,7 +20,7 @@ public:
 	}
 	bool IsFull();
 	void SetFull(bool isFull);
-	void OnClick() override;
+	bool OnClick() override;
 private:
 	bool full;
 };

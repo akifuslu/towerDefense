@@ -6,14 +6,16 @@
 #include "Player.h"
 #include "GameStateMachine.h"
 
-void TowerButton::OnClick()
+bool TowerButton::OnClick()
 {
+	if (!getStatus())//disabled button
+		return false;
 	if (GameStateMachine::GetInstance().OnPause())//game currently paused do not build tower
-		return;
+		return false;
 	if (Player::GetInstance().getGold() < cost)
 	{
 		LOG("not enough gold!");
-		return;
+		return false;
 	}
 	try 
 	{
@@ -23,9 +25,10 @@ void TowerButton::OnClick()
 	catch(std::string exception)
 	{
 		LOG(exception);
-		return;
+		return false;
 	}
 	TowerButtonHandler::GetInstance().HideButtons();
+	return true;
 }
 
 void TowerButton::Draw()
@@ -37,7 +40,7 @@ void TowerButton::Draw()
 	Vector2 coinPos = getLocation();
 	coinPos.y -= 25;
 	DrawTextureEx(*GETTEXTURE("coin"), coinPos, 0, 1, WHITE);
-	DrawText(std::to_string(cost).c_str(), getLocation().x + 25, getLocation().y - 20, 15, WHITE);
+	DrawTextEx(DEFAULTFONT, std::to_string(cost).c_str(), { getLocation().x + 25, getLocation().y - 20 }, 15, 1, WHITE);
 }
 
 void TowerButton::LoadPreset(const std::string & presetPath)

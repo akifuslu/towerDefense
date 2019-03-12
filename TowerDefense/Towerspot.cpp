@@ -13,11 +13,14 @@ void Towerspot::SetFull(bool isFull)
 	full = isFull;
 }
 
-void Towerspot::OnClick()
+bool Towerspot::OnClick()
 {
+	if (!getStatus())//disabled button
+		return false;
 	if (GameStateMachine::GetInstance().OnPause())//game currently paused do not show buttons
-		return;
+		return false;
 	if (full)//TODO: if full check for demolition or upgrade
-		return;
+		return false;
 	TowerButtonHandler::GetInstance().ShowButtons(*this);
+	return true;
 }

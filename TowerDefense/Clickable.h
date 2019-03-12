@@ -4,7 +4,7 @@
 class Clickable
 {
 public:
-	virtual void OnClick() = 0 {};
+	virtual bool OnClick() = 0 {};
 	enum ClickAreaType{Circle, Rect};
 	void UpdateClickArea(int posX, int posY, int width, int height);
 	void SetClickAreaType(ClickAreaType areaType);

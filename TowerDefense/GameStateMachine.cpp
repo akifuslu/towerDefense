@@ -14,12 +14,18 @@
 void GameStateMachine::LoadMainMenu()
 {
 	onLoad = true;
+	//menu background
+	GameEntity* menuBackground = new GameEntity(GETTEXTURE("menu-background"));
+	uiEntities.push_back(menuBackground);
 	//create buttons
-	Button* startBtn = new Button("Start Game", GETTEXTURE("button"), {330, 227});
-	Button* creditsBtn = new Button("Credits", GETTEXTURE("button"), { 330, 327 });
-	Button* exitBtn = new Button("Exit", GETTEXTURE("button"), { 330, 427 });
-	Button* levelBackBtn = new Button("Back", GETTEXTURE("back-button"), {800, 20});
-	Button* levelBtn1 = new Button("Level 1", GETTEXTURE("level-button"), { 90, 70 });
+	Button* startBtn = new Button("Start Game", { 155, 417}, GETTEXTURE("menu-button"), {70, 390});
+	Button* creditsBtn = new Button("Credits", { 184,517}, GETTEXTURE("menu-button"), {70, 490});
+	Button* exitBtn = new Button("Quit", { 197,617}, GETTEXTURE("menu-button"), {70, 590});
+	Button* levelBackBtn = new Button("", { 0,0 }, GETTEXTURE("back-button"), {913, 645});
+	Button* levelBtn1 = new Button("Level 1", { 170,430},GETTEXTURE("level-button"), { 130, 360});
+	Button* levelBtn2 = new Button("Level 2", { 370,430 }, GETTEXTURE("level-button"), { 330, 360 });
+	Button* levelBtn3 = new Button("Level 3", { 570,430 }, GETTEXTURE("level-button"), { 530, 360 });
+	Button* levelBtn4 = new Button("Level 4", { 770,430 }, GETTEXTURE("level-button"), { 730, 360 });
 	//add functionality to buttons
 	std::function<void()> start = std::bind(&GameStateMachine::DisplayLevelSelect, this);	
 	std::function<void()> exit = std::bind(&GameStateMachine::ExitGame, this);
@@ -35,12 +41,19 @@ void GameStateMachine::LoadMainMenu()
 	uiEntities.push_back(exitBtn);
 	uiEntities.push_back(levelBackBtn);
 	uiEntities.push_back(levelBtn1);
+	uiEntities.push_back(levelBtn2);
+	uiEntities.push_back(levelBtn3);
+	uiEntities.push_back(levelBtn4);
 	//register buttons to panels
 	menuPanel.push_back(startBtn);
 	menuPanel.push_back(creditsBtn);
 	menuPanel.push_back(exitBtn);
 	levelPanel.push_back(levelBackBtn);
 	levelPanel.push_back(levelBtn1);
+	levelPanel.push_back(levelBtn2);
+	levelPanel.push_back(levelBtn3);
+	levelPanel.push_back(levelBtn4);
+
 	//display menu panel
 	DisplayMenu();
 	onLoad = false;
@@ -95,25 +108,37 @@ void GameStateMachine::LoadLevel(int level)
 	uiEntities.push_back(towerButton2);
 	uiEntities.push_back(towerButton3);
 	//load pause button
-	Button* pauseButton = new Button("", GETTEXTURE("pause-button"), { 20,700 });
+	Button* pauseButton = new Button("", {0,0}, GETTEXTURE("pause-button"), { 945,20 }, 0, 0.7f);
 	std::function<void()> pause = std::bind(&GameStateMachine::PauseGame, this);
 	pauseButton->AddEvent(pause);
 	uiEntities.push_back(pauseButton);
 	//load pause panel
-	GameEntity* pausePanelBack = new GameEntity(GETTEXTURE("pause-panel"), {230,240}, 0, 1, false);
-	Button* resumeButton = new Button("", GETTEXTURE("play-button"), { 500, 350 }, 0, 1);
+	GameEntity* pausePanelBack = new GameEntity(GETTEXTURE("pause-panel"), {302,264}, 0, 1, false);
+	Button* resumeButton = new Button("Continue", {456, 395}, GETTEXTURE("panel-button"), { 382, 370 }, 0, 1);
+	Button* menuButton = new Button("Main Menu", { 441, 496}, GETTEXTURE("panel-button"), { 382, 470 }, 0, 1);
+	Button* quitButton = new Button("Quit", { 485, 598 }, GETTEXTURE("panel-button"), { 382, 570 }, 0, 1);
+	UIText* pausedText = new UIText("Game Paused", 50, WHITE, NULL, { 0,0 }, { 366,281 }, 0, 1, false);
 	resumeButton->setStatus(false);
+	menuButton->setStatus(false);
+	quitButton->setStatus(false);
+	pausedText->setStatus(false);
 	std::function<void()> resume = std::bind(&GameStateMachine::ResumeGame, this);
 	resumeButton->AddEvent(resume);
 	uiEntities.push_back(pausePanelBack);
 	uiEntities.push_back(resumeButton);
+	uiEntities.push_back(menuButton);
+	uiEntities.push_back(quitButton);
+	uiEntities.push_back(pausedText);
 	pausePanel.push_back(pausePanelBack);
 	pausePanel.push_back(resumeButton);
+	pausePanel.push_back(menuButton);
+	pausePanel.push_back(quitButton);
+	pausePanel.push_back(pausedText);
 	//display user stats
 	UIText* playerGold = new UIText("0", 25, WHITE, GETTEXTURE("coin"), { 40, 5 }, { 10, 10 }, 0, 1.5f);
 	Player::GetInstance().setGoldText(playerGold);
 	uiEntities.push_back(playerGold);	
-	UIText* playerHealth = new UIText("0", 25, WHITE, GETTEXTURE("health"), { 45, 5 }, { 800, 10 }, 0, 1.5f);
+	UIText* playerHealth = new UIText("0", 25, WHITE, GETTEXTURE("health"), { 45, 5 }, { 10, 60 }, 0, 1.5f);
 	Player::GetInstance().setHealthText(playerHealth);
 	uiEntities.push_back(playerHealth);
 	//load initial player gold

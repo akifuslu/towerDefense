@@ -21,7 +21,7 @@ public:
 	{
 		InputHandler::GetInstance().Unregister(*this);//remove from click event list 
 	}
-	void OnClick() override;
+	bool OnClick() override;
 	void Draw() override;
 private:
 	void LoadPreset(const std::string& presetPath);

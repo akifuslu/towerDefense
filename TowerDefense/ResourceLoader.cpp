@@ -13,9 +13,16 @@ void ResourceLoader::Load(const std::string & directory)
 		textures.insert({ fileName, texture });
 		UnloadImage(image);
 	}
+	//Load font
+	def = LoadFont("Fonts//Amaranth-Regular.ttf");
 }
 
 Texture2D* ResourceLoader::GetTexture(const std::string & textureName)
 {
 	return &textures.find(textureName)->second;
+}
+
+Font ResourceLoader::GetFont()
+{
+	return def;
 }

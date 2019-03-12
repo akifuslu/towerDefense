@@ -26,15 +26,15 @@ void InputHandler::HandleClick(Vector2 mousePos)
 		case Clickable::Circle:
 			if (CheckCollisionPointCircle(mousePos, entity->GetCircleCenter(), entity->GetRadius()))
 			{
-				entity->OnClick();
-				return;//to avoid one click effect multiple clickables
+				if (entity->OnClick())//if click succesfull do not click other elements
+					return;
 			}
 			break;
 		case Clickable::Rect:
 			if (CheckCollisionPointRec(mousePos, entity->GetRectangle()))
 			{
-				entity->OnClick();
-				return;//to avoid one click effect multiple clickables
+				if (entity->OnClick())//if click succesfull do not click other elements
+					return;
 			}
 			break;
 		default:
