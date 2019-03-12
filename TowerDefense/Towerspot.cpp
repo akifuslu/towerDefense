@@ -8,9 +8,10 @@ bool Towerspot::IsFull()
 	return full;
 }
 
-void Towerspot::SetFull(bool isFull)
+void Towerspot::SetFull(bool isFull, Tower* tower)
 {
 	full = isFull;
+	spotTower = tower;
 }
 
 bool Towerspot::OnClick()
@@ -20,7 +21,8 @@ bool Towerspot::OnClick()
 	if (GameStateMachine::GetInstance().OnPause())//game currently paused do not show buttons
 		return false;
 	if (full)//TODO: if full check for demolition or upgrade
-		return false;
-	TowerButtonHandler::GetInstance().ShowButtons(*this);
+		TowerButtonHandler::GetInstance().ShowButtons(*this, *spotTower);
+	else
+		TowerButtonHandler::GetInstance().ShowButtons(*this);
 	return true;
 }

@@ -24,7 +24,6 @@ public:
 	void ResetCooldown();
 	int GetDamage();
 	void LevelUpgrade();
-
 	virtual void hitTarget();
 
 	Mob* getTarget();
@@ -33,6 +32,7 @@ public:
 	bool IsAttacking();
 	virtual void UpdateProjectile();
 	void Draw() override;
+	int GetUpgradeCost();
 
 private:
 	int level;
@@ -43,5 +43,6 @@ protected:
 	int delay;
 	int cooldown;
 	int baseDamage;
+	int upgradeCost;
 };
 

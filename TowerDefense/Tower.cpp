@@ -55,4 +55,9 @@ void Tower::Draw()
 	//will be overriden
 }
 
+int Tower::GetUpgradeCost()
+{
+	return upgradeCost;
+}
+
 

@@ -14,6 +14,9 @@
 void GameStateMachine::LoadMainMenu()
 {
 	onLoad = true;
+	onPause = false;
+	ClearStaticEntities();
+	ClearUIEntities();
 	//menu background
 	GameEntity* menuBackground = new GameEntity(GETTEXTURE("menu-background"));
 	uiEntities.push_back(menuBackground);
@@ -102,14 +105,30 @@ void GameStateMachine::LoadLevel(int level)
 	towerButton1->setStatus(false);
 	TowerButton* towerButton2 = new TowerButton(Tower::MAGIC, "Presets//magic.txt", "tower-magic", GETTEXTURE("magic-icon"));
 	towerButton2->setStatus(false);
-	TowerButton* towerButton3 = new TowerButton(Tower::BOMBARD, "Presets//bombard.txt", "tower-bombard", GETTEXTURE("archer-icon"));
+	TowerButton* towerButton3 = new TowerButton(Tower::BOMBARD, "Presets//bombard.txt", "tower-bombard", GETTEXTURE("bombard-icon"));
 	towerButton3->setStatus(false);
+	Button* upgradeButton = new Button("", { 0, 0 }, GETTEXTURE("upgrade-button"));
+	upgradeButton->setStatus(false);
+	Button* destroyButton = new Button("", { 0, 0 }, GETTEXTURE("destroy-button"));
+	destroyButton->setStatus(false);
+	UIText* upgradeText = new UIText("", 15, WHITE, GETTEXTURE("coin"), {25,5});
+	upgradeText->setStatus(false);
 	TowerButtonHandler::GetInstance().AddButton(*towerButton1);
 	TowerButtonHandler::GetInstance().AddButton(*towerButton2);
 	TowerButtonHandler::GetInstance().AddButton(*towerButton3);
+	TowerButtonHandler::GetInstance().AddButton(*upgradeButton);
+	TowerButtonHandler::GetInstance().AddButton(*destroyButton);
+	TowerButtonHandler::GetInstance().upgradeText = upgradeText;
 	uiEntities.push_back(towerButton1);
 	uiEntities.push_back(towerButton2);
 	uiEntities.push_back(towerButton3);
+	uiEntities.push_back(upgradeButton);
+	uiEntities.push_back(destroyButton);
+	uiEntities.push_back(upgradeText);
+	std::function<void()> upgrade = std::bind(&TowerButtonHandler::UpgradeTower, &TowerButtonHandler::GetInstance());
+	upgradeButton->AddEvent(upgrade);
+	std::function<void()> destroy = std::bind(&TowerButtonHandler::DestroyTower, &TowerButtonHandler::GetInstance());
+	destroyButton->AddEvent(destroy);
 	//load pause button
 	Button* pauseButton = new Button("", {0,0}, GETTEXTURE("pause-button"), { 945,20 }, 0, 0.7f);
 	std::function<void()> pause = std::bind(&GameStateMachine::PauseGame, this);
@@ -126,7 +145,11 @@ void GameStateMachine::LoadLevel(int level)
 	quitButton->setStatus(false);
 	pausedText->setStatus(false);
 	std::function<void()> resume = std::bind(&GameStateMachine::ResumeGame, this);
+	std::function<void()> mainmenu = std::bind(&GameStateMachine::LoadMainMenu, this);
+	std::function<void()> exit = std::bind(&GameStateMachine::ExitGame, this);
 	resumeButton->AddEvent(resume);
+	menuButton->AddEvent(mainmenu);
+	quitButton->AddEvent(exit);
 	uiEntities.push_back(pausePanelBack);
 	uiEntities.push_back(resumeButton);
 	uiEntities.push_back(menuButton);

@@ -12,9 +12,15 @@ void TowerButtonHandler::AddButton(TowerButton & button)
 	towerButtons.push_back(&button);
 }
 
+void TowerButtonHandler::AddButton(Button & button)
+{
+	buttons.push_back(&button);
+}
+
 void TowerButtonHandler::ClearButtons()
 {
 	towerButtons.clear();
+	buttons.clear();
 }
 
 void TowerButtonHandler::ShowButtons(Towerspot & spot)
@@ -33,11 +39,34 @@ void TowerButtonHandler::ShowButtons(Towerspot & spot)
 	}
 }
 
+void TowerButtonHandler::ShowButtons(Towerspot& spot, Tower& tower)
+{
+	currentTower = &tower;
+	currentSpot = &spot;
+	Vector2 startPos = tower.getLocation();
+	startPos.x -= 15;
+	startPos.y -= 30;
+	upgradeText->setStatus(true);
+	upgradeText->setLocation({startPos.x - 20, startPos.y - 30});
+	upgradeText->UpdateText(std::to_string(tower.GetUpgradeCost()));
+	for (Button* const& btn : buttons)
+	{
+		btn->setStatus(true);
+		btn->setLocation(startPos);
+		startPos.x += 50;
+		btn->UpdateClickArea(btn->getLocation().x, btn->getLocation().y, btn->getImage()->width, btn->getImage()->height);
+	}
+}
+
 void TowerButtonHandler::HideButtons()
 {
 	currentSpot = NULL;//no towerspot selected
-	//hide buttons
-	for (TowerButton* const& btn : towerButtons)
+	currentTower = NULL;//no tower selected
+	for (TowerButton* const& btn : towerButtons)//hide buttons
+	{
+		btn->setStatus(false);
+	}
+	for (Button* const& btn : buttons)
 	{
 		btn->setStatus(false);
 	}
@@ -51,20 +80,40 @@ void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::strin
 	Vector2 pos = currentSpot->getLocation();
 	pos.x -= 12;
 	pos.y -= 25;
-	
+	Tower* newTower;
 	if (towerType == 0) {
-		Behaviour::GetInstance().RegisterTower((new Archer(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));
+		newTower = new Archer(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage);
+		Behaviour::GetInstance().RegisterTower(newTower);
 	}
 	else if (towerType == 1) {
-		Behaviour::GetInstance().RegisterTower((new Bombard(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));
+		newTower = new Bombard(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage);
+		Behaviour::GetInstance().RegisterTower(newTower);
 	}
 	else {
-		Behaviour::GetInstance().RegisterTower((new Magic(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage)));
+		newTower = new Magic(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage);
+		Behaviour::GetInstance().RegisterTower(newTower);
 	}
 	
-	
-	currentSpot->SetFull(true);
-	currentSpot->setStatus(false);
+	currentSpot->SetFull(true, newTower);
 	currentSpot = NULL;
+}
+
+void TowerButtonHandler::UpgradeTower()
+{
+	if (currentTower == NULL)
+		return;
+	currentTower->LevelUpgrade();
+	HideButtons();
+}
+
+void TowerButtonHandler::DestroyTower()
+{
+	if (currentTower == NULL)
+		return;
+	Behaviour::GetInstance().UnregisterTower(currentTower);
+	delete currentTower;
+	currentTower = NULL;
+	currentSpot->SetFull(false, NULL);
+	HideButtons();
 }
 
