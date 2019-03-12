@@ -35,6 +35,8 @@ private:
 	//
 	int waitWave;
 
+	int mobCounter;
+
 public:
 	Behaviour(Behaviour const&) = delete;
 	void operator=(Behaviour const&) = delete;
@@ -68,4 +70,7 @@ public:
 	//Draw registered entities
 	void DrawEntities();
 
+	void MobCount();
+
+	void ClearAll();
 };

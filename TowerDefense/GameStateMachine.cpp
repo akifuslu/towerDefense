@@ -62,6 +62,9 @@ void GameStateMachine::LoadMainMenu()
 void GameStateMachine::LoadLevel(int level)
 {
 	onLoad = true;
+	onPause = false;
+	Behaviour::GetInstance().ClearAll();
+	TowerButtonHandler::GetInstance().ClearButtons();
 	currentLevel = level;
 	std::string path = "Presets//level";
 	path += std::to_string(level) + ".txt";
@@ -134,6 +137,33 @@ void GameStateMachine::LoadLevel(int level)
 	pausePanel.push_back(menuButton);
 	pausePanel.push_back(quitButton);
 	pausePanel.push_back(pausedText);
+	//load level win panel
+	Button* nextLevelButton = new Button("Next Level", { 456, 395 }, GETTEXTURE("panel-button"), { 382, 370 }, 0, 1);
+	UIText* winText = new UIText("Level Cleared", 50, WHITE, NULL, { 0,0 }, { 366,281 }, 0, 1, false);
+	nextLevelButton->setStatus(false);
+	std::function<void(int)> nextLevel = std::bind(&GameStateMachine::LoadLevel, this, std::placeholders::_1);
+	nextLevelButton->AddEvent(nextLevel, currentLevel + 1);
+	uiEntities.push_back(nextLevelButton);
+	uiEntities.push_back(winText);
+	winPanel.push_back(pausePanelBack);
+	winPanel.push_back(nextLevelButton);
+	winPanel.push_back(menuButton);
+	winPanel.push_back(quitButton);
+	winPanel.push_back(winText);
+	//load level lose panel
+	Button* restartButton = new Button("Restart", { 456, 395 }, GETTEXTURE("panel-button"), { 382, 370 }, 0, 1);
+	UIText* loseText = new UIText("You Lose", 50, WHITE, NULL, { 0,0 }, { 366,281 }, 0, 1, false);
+	restartButton->setStatus(false);
+	std::function<void(int)> restartLevel = std::bind(&GameStateMachine::LoadLevel, this, std::placeholders::_1);
+	restartButton->AddEvent(restartLevel, currentLevel);
+	uiEntities.push_back(restartButton);
+	uiEntities.push_back(loseText);
+	losePanel.push_back(pausePanelBack);
+	losePanel.push_back(restartButton);
+	losePanel.push_back(menuButton);
+	losePanel.push_back(quitButton);
+	losePanel.push_back(loseText);
+
 	//display user stats
 	UIText* playerGold = new UIText("0", 25, WHITE, GETTEXTURE("coin"), { 40, 5 }, { 10, 10 }, 0, 1.5f);
 	Player::GetInstance().setGoldText(playerGold);
@@ -146,7 +176,7 @@ void GameStateMachine::LoadLevel(int level)
 	int gold;
 	std::stringstream plGold(line);
 	plGold >> tmp >> gold;
-	Player::GetInstance().addGold(gold);
+	Player::GetInstance().addGold(gold - Player::GetInstance().getGold());
 	//load initial player health
 	std::getline(levelPreset, line);
 	int health;
@@ -216,6 +246,8 @@ void GameStateMachine::ExitGame()
 
 void GameStateMachine::PauseGame()
 {
+	if (onPause)//already paused
+		return;
 	onPause = true;
 	DisplayPause(true);
 }
@@ -229,6 +261,15 @@ void GameStateMachine::ResumeGame()
 bool GameStateMachine::OnPause()
 {
 	return onPause;
+}
+
+void GameStateMachine::LevelFinished(bool isWin)
+{
+	onPause = true;
+	if (isWin)
+		DisplayWinPanel(true);
+	else
+		DisplayLosePanel(true);
 }
 
 void GameStateMachine::DrawStaticEntities()
@@ -290,6 +331,22 @@ void GameStateMachine::DisplayCredits()
 void GameStateMachine::DisplayPause(bool disp)
 {
 	for (auto & item : pausePanel)
+	{
+		item->setStatus(disp);
+	}
+}
+
+void GameStateMachine::DisplayWinPanel(bool disp)
+{
+	for (auto & item : winPanel)
+	{
+		item->setStatus(disp);
+	}
+}
+
+void GameStateMachine::DisplayLosePanel(bool disp)
+{
+	for (auto & item : losePanel)
 	{
 		item->setStatus(disp);
 	}

@@ -10,6 +10,7 @@ void Behaviour::StartWave()
 	{
 		mobs[i]->setStatus(true);
 	}
+	mobCounter = 0;
 }
 
 void Behaviour::RegisterMob(Mob * mobToAdd)
@@ -41,6 +42,7 @@ void Behaviour::SetWaves(std::vector<int> waveMobs)
 
 void Behaviour::getLanesFromTxt(std::string filePath)
 {
+	pathLanes = std::array<std::vector<Vector2>, 5>();
 	std::ifstream newText;
 	newText.open(filePath.c_str());
 
@@ -84,14 +86,12 @@ void Behaviour::Update() {
 		waitWave--;
 		return;
 	}
-	int mobCounter = 0;
 	for (int i = mobs.size() - 1; i > (int)mobs.size() - waveMobCount[currentWave] - 1; i--)
 	{
 		if (mobs[i]->getHealth() <= 0) {
-			mobCounter++;
 			continue;
 		}
-		if (!mobs[i]->getStatus())//amk pasifi
+		if (!mobs[i]->getStatus())//passive
 			continue;
 
 		Vector2 moveVector;
@@ -112,9 +112,10 @@ void Behaviour::Update() {
 			{
 				//player loses 1 point and mob refreshes
 				Player::GetInstance().loseHealth();
+				mobs[i]->setStatus(false);
 				mobCounter++;
 				if (Player::GetInstance().getHealth() <= 0) {
-					GameStateMachine::GetInstance().ExitGame();
+					GameStateMachine::GetInstance().LevelFinished(false);
 				}
 			}
 		}
@@ -150,8 +151,8 @@ void Behaviour::Update() {
 
 		currentWave--;
 
-		if (currentWave < 0)//re implement this
-			GameStateMachine::GetInstance().ExitGame();
+		if (currentWave < 0)//Level finished
+			GameStateMachine::GetInstance().LevelFinished(true);
 		else
 			StartWave();
 		return;
@@ -214,4 +215,15 @@ void Behaviour::DrawEntities()
 	{
 		tower->Draw();
 	}
+}
+
+void Behaviour::MobCount()
+{
+	mobCounter++;
+}
+
+void Behaviour::ClearAll()
+{
+	mobs.clear();
+	towers.clear();
 }

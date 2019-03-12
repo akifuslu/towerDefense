@@ -12,6 +12,11 @@ void TowerButtonHandler::AddButton(TowerButton & button)
 	towerButtons.push_back(&button);
 }
 
+void TowerButtonHandler::ClearButtons()
+{
+	towerButtons.clear();
+}
+
 void TowerButtonHandler::ShowButtons(Towerspot & spot)
 {
 	currentSpot = &spot;//save the spot for building tower

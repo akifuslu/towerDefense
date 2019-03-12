@@ -20,6 +20,7 @@ public:
 	void PauseGame();
 	void ResumeGame();
 	bool OnPause();
+	void LevelFinished(bool isWin);
 private:
 	GameStateMachine() {};
 	~GameStateMachine() 
@@ -41,10 +42,15 @@ private:
 	void DisplayLevelSelect();
 	void DisplayCredits();
 	void DisplayPause(bool disp);
+	void DisplayWinPanel(bool disp);
+	void DisplayLosePanel(bool disp);
+
 	std::vector<GameEntity*> menuPanel;
 	std::vector<GameEntity*> levelPanel;
 	std::vector<GameEntity*> creditsPanel;
 	std::vector<GameEntity*> pausePanel;
+	std::vector<GameEntity*> winPanel;
+	std::vector<GameEntity*> losePanel;
 	bool onLoad;
 	bool onPause;
 };

@@ -2,6 +2,7 @@
 #include "Mob.h"
 #include "Player.h"
 #include "ResourceLoader.h"
+#include "Behaviour.h"
 
 //Getters & Setters
 
@@ -17,6 +18,7 @@ void  Mob::updateHealth(int damage)
 			m_isDead = true;
 			Player::GetInstance().addGold(m_cost);
 			setImage(ResourceLoader::GetInstance().GetTexture("mobdead"));
+			Behaviour::GetInstance().MobCount();
 		}
 	}
 }
