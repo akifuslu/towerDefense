@@ -192,13 +192,20 @@ void GameStateMachine::LoadLevel(int level)
 	waveC >> tmp >> waveCount;
 	for (int i = 0; i < waveCount; i++)
 	{
-		int count = 0;
+		int m1Count, m2Count, m3Count;
 		std::getline(levelPreset, line);
 		std::stringstream wave(line);
-		wave >> tmp >> count;
-		waves.push_back(count);
-		for(int j = 0; j < count; j++)
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0}, 0, 2, 1));
+		wave >> tmp >> m1Count >> tmp >> m2Count >> tmp >> m3Count;
+		waves.push_back(m1Count+m2Count+m3Count);
+		for (int j = 0; j < m1Count; j++) {
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0 }, 0, 2, 0.750, 50, 150));
+		}
+		for (int j = 0; j < m2Count; j++) {
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0 }, 0, 2, 1.125, 100, 250));
+		}
+		for (int j = 0; j < m3Count; j++) {
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0 }, 0, 2, 1.500, 150, 400));
+		}
 	}
 	Behaviour::GetInstance().SetWaves(waves);
 	//all loaded close file and run!
