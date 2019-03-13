@@ -23,6 +23,7 @@ public:
 	bool IsFull();
 	void SetFull(bool isFull, Tower* tower);
 	bool OnClick() override;
+	void Draw() override;
 private:
 	bool full;
 	Tower* spotTower;

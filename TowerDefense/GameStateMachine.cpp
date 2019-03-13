@@ -101,11 +101,11 @@ void GameStateMachine::LoadLevel(int level)
 		staticEntities.push_back(spot);
 	}
 	//load tower buttons
-	TowerButton* towerButton1 = new TowerButton(Tower::ARCHER, "Presets//archer.txt", "tower", GETTEXTURE("archer-icon"));
+	TowerButton* towerButton1 = new TowerButton(Tower::ARCHER, "Presets//archer.txt", "archer0", GETTEXTURE("archer-icon"));
 	towerButton1->setStatus(false);
-	TowerButton* towerButton2 = new TowerButton(Tower::MAGIC, "Presets//magic.txt", "tower-magic", GETTEXTURE("magic-icon"));
+	TowerButton* towerButton2 = new TowerButton(Tower::MAGIC, "Presets//magic.txt", "magic0", GETTEXTURE("magic-icon"));
 	towerButton2->setStatus(false);
-	TowerButton* towerButton3 = new TowerButton(Tower::BOMBARD, "Presets//bombard.txt", "tower-bombard", GETTEXTURE("bombard-icon"));
+	TowerButton* towerButton3 = new TowerButton(Tower::BOMBARD, "Presets//bombard.txt", "bombard0", GETTEXTURE("bombard-icon"));
 	towerButton3->setStatus(false);
 	Button* upgradeButton = new Button("", { 0, 0 }, GETTEXTURE("upgrade-button"));
 	upgradeButton->setStatus(false);
@@ -223,13 +223,13 @@ void GameStateMachine::LoadLevel(int level)
 		wave >> tmp >> m1Count >> tmp >> m2Count >> tmp >> m3Count;
 		waves.push_back(m1Count+m2Count+m3Count);
 		for (int j = 0; j < m1Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0 }, 0, 2, 0.750, 50, 150));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob1"), { 0, 0 }, 0, 0.15, 0.750, 50, 150));
 		}
 		for (int j = 0; j < m2Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0 }, 0, 2, 1.125, 100, 250));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob1"), { 0, 0 }, 0, 0.15, 1.125, 100, 250));
 		}
 		for (int j = 0; j < m3Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob"), { 0, 0 }, 0, 2, 1.500, 150, 400));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob1"), { 0, 0 }, 0, 0.15, 1.500, 150, 400));
 		}
 	}
 	Behaviour::GetInstance().SetWaves(waves);

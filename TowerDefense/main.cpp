@@ -19,7 +19,7 @@ int main()
 {
 	int screenWidth = SCREENWIDTH;
 	int screenHeight = SCREENHEIGHT;
-
+	SetConfigFlags(FLAG_VSYNC_HINT);
 	InitWindow(screenWidth, screenHeight, "Tower Defense Alpha 0.0");
 	SetTargetFPS(60);
 	ResourceLoader::GetInstance().Load("Resources");

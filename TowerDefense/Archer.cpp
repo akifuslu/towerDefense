@@ -8,7 +8,23 @@ void Archer::hitTarget()
 		return;
 	isAttacking = true;
 	projectile->setStatus(true);
-	projectile->setLocation(this->getLocation());
+	Vector2 projectileLoc = getLocation();
+	if (level == 0) 
+	{
+		projectileLoc.x += 52;
+		projectileLoc.y += 40;
+	}
+	if (level == 1)
+	{
+		projectileLoc.x += 52;
+		projectileLoc.y += 32;
+	}
+	if (level >= 2)
+	{
+		projectileLoc.x += 52;
+		projectileLoc.y += 24;
+	}
+	projectile->setLocation(projectileLoc);
 	
 	UpdateProjectile();
 }
@@ -57,4 +73,14 @@ void Archer::Draw()
 	GameEntity::Draw();//call base method
 	if (isAttacking)
 		projectile->Draw();
+}
+
+void Archer::LevelUpgrade()
+{
+	Tower::LevelUpgrade();
+	if (level < 3) {
+		std::string im = "archer";
+		im += std::to_string(level);
+		setImage(GETTEXTURE(im));
+	}
 }

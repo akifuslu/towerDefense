@@ -96,7 +96,7 @@ void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::strin
 		newTower = new Magic(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage, cost);
 		Behaviour::GetInstance().RegisterTower(newTower);
 	}
-	
+//	currentSpot->setStatus(false);
 	currentSpot->SetFull(true, newTower);
 	currentSpot = NULL;
 }

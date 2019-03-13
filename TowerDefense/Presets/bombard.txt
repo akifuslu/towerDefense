@@ -1,4 +1,4 @@
-200 range
+175 range
 120 delay
-50 damage
-300 cost
+70 damage
+600 cost

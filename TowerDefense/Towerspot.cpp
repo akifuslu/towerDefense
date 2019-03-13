@@ -26,3 +26,9 @@ bool Towerspot::OnClick()
 		TowerButtonHandler::GetInstance().ShowButtons(*this);
 	return true;
 }
+
+void Towerspot::Draw()
+{
+	if (!full)
+		GameEntity::Draw();
+}

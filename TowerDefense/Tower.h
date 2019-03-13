@@ -13,7 +13,7 @@ public:
 	{
 		isAttacking = false;
 		cooldown = 0;
-		level = 1;
+		level = 0;
 	}
 
 	~Tower() 
@@ -24,7 +24,7 @@ public:
 	int GetCooldown();
 	void ResetCooldown();
 	int GetDamage();
-	void LevelUpgrade();
+	virtual void LevelUpgrade();
 	virtual void hitTarget();
 
 	Mob* getTarget();
@@ -35,9 +35,8 @@ public:
 	void Draw() override;
 	int GetUpgradeCost();
 	
-private:
-	int level;
 protected:
+	int level;
 	Mob* m_target;
 	bool isAttacking;
 	float range;

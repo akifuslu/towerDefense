@@ -17,7 +17,7 @@ void  Mob::updateHealth(int damage)
 		{
 			m_isDead = true;
 			Player::GetInstance().addGold(m_cost);
-			setImage(ResourceLoader::GetInstance().GetTexture("mobdead"));
+			setImage(ResourceLoader::GetInstance().GetTexture("mob1dead"));
 			Behaviour::GetInstance().MobCount();
 		}
 	}

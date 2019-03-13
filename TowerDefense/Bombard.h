@@ -18,6 +18,7 @@ public:
 	void hitTarget() override;
 	void UpdateProjectile() override;
 	void Draw() override;
+	void LevelUpgrade() override;
 private:
 	GameEntity * projectile;
 	int frameCounter;
