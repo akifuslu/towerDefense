@@ -1,0 +1,15 @@
+background: level3
+spotCount: 4
+spot1Pos: 270 280
+spot2Pos: 680 282
+spot3Pos: 360 483
+spot4Pos: 596 483
+playerGold: 500
+playerHealth: 10
+waveCount: 5
+6thWave: 7 ; 4 ; 2
+5thWave: 6 ; 3 ; 1
+5thWave: 5 ; 2 ; 1
+3rdWave: 4 ; 2 ; 0
+2ndWave: 4 ; 0 ; 0
+1stWave: 2 ; 0 ; 0
