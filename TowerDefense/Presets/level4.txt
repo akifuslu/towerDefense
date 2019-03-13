@@ -1,4 +1,4 @@
-background: level1
+background: level4
 spotCount: 6
 spot1Pos: 370 180
 spot2Pos: 570 180
