@@ -6,6 +6,7 @@
 #include "Bombard.h"
 #include "ResourceLoader.h"
 #include "Behaviour.h"
+#include "Player.h"
 
 void TowerButtonHandler::AddButton(TowerButton & button)
 {
@@ -70,9 +71,10 @@ void TowerButtonHandler::HideButtons()
 	{
 		btn->setStatus(false);
 	}
+	upgradeText->setStatus(false);
 }
 
-void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::string& towerImage, float range, float delay, int baseDamage)
+void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::string& towerImage, float range, float delay, int baseDamage, int cost)
 {
 	if (!currentSpot)
 		throw std::string("Null Pointer Exception!");
@@ -82,15 +84,15 @@ void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::strin
 	pos.y -= 25;
 	Tower* newTower;
 	if (towerType == 0) {
-		newTower = new Archer(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage);
+		newTower = new Archer(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage, cost);
 		Behaviour::GetInstance().RegisterTower(newTower);
 	}
 	else if (towerType == 1) {
-		newTower = new Bombard(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage);
+		newTower = new Bombard(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage, cost);
 		Behaviour::GetInstance().RegisterTower(newTower);
 	}
 	else {
-		newTower = new Magic(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage);
+		newTower = new Magic(GETTEXTURE(towerImage), pos, currentSpot->getRotation(), 0.4f, range, delay, baseDamage, cost);
 		Behaviour::GetInstance().RegisterTower(newTower);
 	}
 	
@@ -100,8 +102,9 @@ void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::strin
 
 void TowerButtonHandler::UpgradeTower()
 {
-	if (currentTower == NULL)
+	if (currentTower == NULL || Player::GetInstance().getGold() < currentTower->GetUpgradeCost())
 		return;
+	Player::GetInstance().addGold(-currentTower->GetUpgradeCost());
 	currentTower->LevelUpgrade();
 	HideButtons();
 }

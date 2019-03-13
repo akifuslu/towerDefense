@@ -21,7 +21,7 @@ public:
 	void ShowButtons(Towerspot& spot);
 	void ShowButtons(Towerspot& spot, Tower& tower);
 	void HideButtons();
-	void BuildTower(Tower::TowerType towerType, const std::string& towerImage, float range, float delay, int baseDamage);
+	void BuildTower(Tower::TowerType towerType, const std::string& towerImage, float range, float delay, int baseDamage, int cost);
 	void UpgradeTower();
 	void DestroyTower();
 	UIText* upgradeText;
@@ -32,4 +32,3 @@ private:
 	Towerspot* currentSpot;
 	Tower* currentTower;
 };
-

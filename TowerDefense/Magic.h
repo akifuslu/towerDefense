@@ -4,8 +4,8 @@
 class Magic : public Tower
 {
 public:
-	Magic(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float range = 0, float delay = 0, int baseDamage = 0)
-		:Tower(image, coordinates, rotation, scale, range, delay, baseDamage)
+	Magic(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float range = 0, float delay = 0, int baseDamage = 0, int cost = 0)
+		:Tower(image, coordinates, rotation, scale, range, delay, baseDamage, cost)
 	{
 		projectile = new GameEntity(GETTEXTURE("magic-beam"), { 0,0 }, 0, 1);
 		projectile->setStatus(false);

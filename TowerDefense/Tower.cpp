@@ -26,7 +26,10 @@ int Tower::GetDamage()
 void Tower::LevelUpgrade()
 {
 	level++;
-	//update range, delay and basedamage
+	upgradeCost *= 2;
+	range *= 2;
+	baseDamage *= 2;
+	delay /= 2;
 }
 
 void Tower::hitTarget()

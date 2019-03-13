@@ -19,7 +19,7 @@ bool TowerButton::OnClick()
 	}
 	try 
 	{
-		TowerButtonHandler::GetInstance().BuildTower(type, towerImage, range, delay, baseDamage);
+		TowerButtonHandler::GetInstance().BuildTower(type, towerImage, range, delay, baseDamage, cost);
 		Player::GetInstance().addGold(-cost);//Reduce players gold
 	}
 	catch(std::string exception)

@@ -207,7 +207,9 @@ void GameStateMachine::LoadLevel(int level)
 	plHealth >> tmp >> health;
 	Player::GetInstance().setHealth(health);
 	//parsing waves
-	Behaviour::GetInstance().getLanesFromTxt("Presets//lanes.txt");
+	std::string lanePath = "Presets//lanes";
+	lanePath += std::to_string(level) + ".txt";
+	Behaviour::GetInstance().getLanesFromTxt(lanePath);
 	int waveCount;
 	std::vector<int> waves;
 	std::getline(levelPreset, line);

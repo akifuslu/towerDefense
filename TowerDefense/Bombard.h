@@ -4,8 +4,8 @@
 class Bombard : public Tower
 {
 public:
-	Bombard(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float range = 0, float delay = 0, int baseDamage = 0)
-		:Tower(image, coordinates, rotation, scale, range, delay, baseDamage)
+	Bombard(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float range = 0, float delay = 0, int baseDamage = 0, int cost = 0)
+		:Tower(image, coordinates, rotation, scale, range, delay, baseDamage, cost)
 	{
 		projectile = new GameEntity(GETTEXTURE("bomb"), { 0,0 }, 0, (float)0.1);
 		projectile->setStatus(false);
