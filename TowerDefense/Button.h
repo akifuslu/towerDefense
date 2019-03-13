@@ -13,6 +13,7 @@ public:
 		this->textPos = textPos;
 		SetClickAreaType(Rect);
 		UpdateClickArea(coordinates.x, coordinates.y, image->width, image->height);
+		currentFunc = -1;
 		InputHandler::GetInstance().Register(*this);//register as clickable to get click events -
 	}
 	~Button()

@@ -71,7 +71,8 @@ void TowerButtonHandler::HideButtons()
 	{
 		btn->setStatus(false);
 	}
-	upgradeText->setStatus(false);
+	if(upgradeText)
+		upgradeText->setStatus(false);
 }
 
 void TowerButtonHandler::BuildTower(Tower::TowerType towerType, const std::string& towerImage, float range, float delay, int baseDamage, int cost)

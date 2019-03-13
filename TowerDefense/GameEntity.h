@@ -55,5 +55,4 @@ public:
 
 	bool getStatus() { return m_active; }
 	void setStatus(bool status) { m_active = status; }
-
 };
