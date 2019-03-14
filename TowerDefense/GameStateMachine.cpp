@@ -21,6 +21,8 @@ void GameStateMachine::LoadMainMenu()
 	levelPanel.clear();
 	creditsPanel.clear();
 	pausePanel.clear();
+	TowerButtonHandler::GetInstance().ClearButtons();
+	InputHandler::GetInstance().Clear();
 	currentLevel = 0;
 	//menu background
 	GameEntity* menuBackground = new GameEntity(GETTEXTURE("menu-background"));
@@ -87,6 +89,7 @@ void GameStateMachine::LoadLevel(int level)
 	pausePanel.clear();
 	winPanel.clear();
 	losePanel.clear();
+	InputHandler::GetInstance().Clear();
 	Behaviour::GetInstance().ClearAll();
 	TowerButtonHandler::GetInstance().ClearButtons();
 	currentLevel = level;
