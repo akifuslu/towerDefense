@@ -14,6 +14,10 @@ private:
 	{
 		for (auto & i : towers)
 			delete i;
+
+		for (unsigned int i = 0; i < mobs.size(); i++)
+			delete mobs[i];
+
 		towers.clear();
 	};
 	//Mobs we want to control

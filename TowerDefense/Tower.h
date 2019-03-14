@@ -16,7 +16,7 @@ public:
 		level = 0;
 	}
 
-	~Tower() 
+	virtual ~Tower() 
 	{
 	}
 

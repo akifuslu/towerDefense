@@ -11,7 +11,7 @@ public:
 		projectile->setStatus(false);
 		frameCounter = 0;
 	}
-	~Bombard() 
+	~Bombard() override
 	{
 		delete projectile;
 	};

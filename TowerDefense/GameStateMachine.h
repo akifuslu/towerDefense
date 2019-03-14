@@ -26,6 +26,7 @@ private:
 	~GameStateMachine() 
 	{
 		ClearStaticEntities();
+		ClearUIEntities();
 		menuPanel.clear();
 		levelPanel.clear();
 		creditsPanel.clear();

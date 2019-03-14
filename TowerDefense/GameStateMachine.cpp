@@ -17,6 +17,7 @@ void GameStateMachine::LoadMainMenu()
 	onPause = false;
 	ClearStaticEntities();
 	ClearUIEntities();
+	currentLevel = 0;
 	//menu background
 	GameEntity* menuBackground = new GameEntity(GETTEXTURE("menu-background"));
 	uiEntities.push_back(menuBackground);

@@ -27,6 +27,8 @@ private:
 	{
 		for (auto & i : textures)
 			UnloadTexture(i.second);
+
+		UnloadFont(def);
 	};
 };
 

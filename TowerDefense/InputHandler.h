@@ -10,6 +10,9 @@ public:
 		static InputHandler instance;
 		return instance;
 	}
+	~InputHandler(){
+		entities.clear();
+	}
 	InputHandler(InputHandler const&) = delete;
 	void operator=(InputHandler const&) = delete;
 	void Register(Clickable& entity);

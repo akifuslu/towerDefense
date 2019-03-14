@@ -16,7 +16,7 @@ public:
 		destRect.height = GETTEXTURE("magic-beam")->height;
 		destRect.width = GETTEXTURE("magic-beam")->width;
 	}
-	~Magic() 
+	~Magic() override 
 	{
 		delete projectile;
 	};
