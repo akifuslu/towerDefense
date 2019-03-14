@@ -31,6 +31,8 @@ private:
 		levelPanel.clear();
 		creditsPanel.clear();
 		pausePanel.clear();
+		winPanel.clear();
+		losePanel.clear();
 	};
 	int currentLevel;//-1 game closed, 0 main menu, 1,2.. levels
 	std::list<GameEntity*> staticEntities;

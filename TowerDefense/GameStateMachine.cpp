@@ -17,6 +17,10 @@ void GameStateMachine::LoadMainMenu()
 	onPause = false;
 	ClearStaticEntities();
 	ClearUIEntities();
+	menuPanel.clear();
+	levelPanel.clear();
+	creditsPanel.clear();
+	pausePanel.clear();
 	currentLevel = 0;
 	//menu background
 	GameEntity* menuBackground = new GameEntity(GETTEXTURE("menu-background"));
@@ -80,6 +84,9 @@ void GameStateMachine::LoadLevel(int level)
 {
 	onLoad = true;
 	onPause = false;
+	pausePanel.clear();
+	winPanel.clear();
+	losePanel.clear();
 	Behaviour::GetInstance().ClearAll();
 	TowerButtonHandler::GetInstance().ClearButtons();
 	currentLevel = level;
@@ -312,6 +319,7 @@ bool GameStateMachine::OnPause()
 void GameStateMachine::LevelFinished(bool isWin)
 {
 	onPause = true;
+	DisplayPause(false);
 	if (isWin)
 		DisplayWinPanel(true);
 	else
