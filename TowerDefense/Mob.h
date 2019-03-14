@@ -7,8 +7,8 @@ class Mob : public GameEntity
 {
 public:
 
-	Mob(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float speed = 100., int health = 100, int cost = 250)
-		: GameEntity(image, coordinates, rotation, scale), m_speed(speed), m_health(health), m_isDead(false), m_cost(cost)
+	Mob(Texture2D* image, Vector2 coordinates = { 0., 0. }, float rotation = 0., float scale = 1., float speed = 100., int health = 100, int cost = 250, const std::string & deadImage = "")
+		: GameEntity(image, coordinates, rotation, scale), m_speed(speed), m_health(health), m_isDead(false), m_cost(cost), deadImage(deadImage)
 	{}
 
 	//Getters & Setters
@@ -28,6 +28,8 @@ public:
 private:
 
 	bool m_isDead;
+
+	std::string deadImage;
 
 	int m_cost;
 

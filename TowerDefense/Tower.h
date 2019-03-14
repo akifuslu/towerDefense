@@ -26,6 +26,7 @@ public:
 	int GetDamage();
 	virtual void LevelUpgrade();
 	virtual void hitTarget();
+	bool IsInRange(Vector2 targetPos);
 
 	Mob* getTarget();
 	void setTarget(Mob* target);

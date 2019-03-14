@@ -223,13 +223,13 @@ void GameStateMachine::LoadLevel(int level)
 		wave >> tmp >> m1Count >> tmp >> m2Count >> tmp >> m3Count;
 		waves.push_back(m1Count+m2Count+m3Count);
 		for (int j = 0; j < m1Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob1"), { 0, 0 }, 0, 0.15, 0.750, 50, 150));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("bandit"), { 0, 0 }, 0, 0.12, 0.750, 50, 150, "banditdead"));
 		}
 		for (int j = 0; j < m2Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob1"), { 0, 0 }, 0, 0.15, 1.125, 100, 250));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("rogue"), { 0, 0 }, 0, 0.12, 1.125, 100, 250, "roguedead"));
 		}
 		for (int j = 0; j < m3Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("mob1"), { 0, 0 }, 0, 0.15, 1.500, 150, 400));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("knight"), { 0, 0 }, 0, 0.12, 1.500, 150, 400, "knightdead"));
 		}
 	}
 	Behaviour::GetInstance().SetWaves(waves);

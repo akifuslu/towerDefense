@@ -16,7 +16,7 @@ void Behaviour::StartWave()
 void Behaviour::RegisterMob(Mob * mobToAdd)
 {
 	int r = (rand() % 5);
-	int yOffset = (rand() % 100);
+	int yOffset = (rand() % 300);
 	mobToAdd->setLane(r);
 	mobToAdd->setLocation({pathLanes[r][0].x, pathLanes[r][0].y - yOffset});
 	mobToAdd->setCurrentTarget(0);
@@ -177,8 +177,7 @@ void Behaviour::Update() {
 			for (int i = mobs.size() - 1; i > (int)mobs.size() - waveMobCount[currentWave] - 1; i--) {
 				if (mobs[i]->getHealth() <= 0)
 					continue;
-				if (hypot(mobs[i]->getLocation().x - tower->getLocation().x,
-					mobs[i]->getLocation().y - tower->getLocation().y) < tower->GetRange()) {
+				if (tower->IsInRange(mobs[i]->getLocation())) {
 					tower->setTarget(mobs[i]);
 				}
 			}

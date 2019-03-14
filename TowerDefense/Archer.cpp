@@ -84,3 +84,4 @@ void Archer::LevelUpgrade()
 		setImage(GETTEXTURE(im));
 	}
 }
+

@@ -27,14 +27,25 @@ void Tower::LevelUpgrade()
 {
 	level++;
 	upgradeCost *= 2;
-	range *= 2;
-	baseDamage *= 2;
+	range *= 1.4f;
+	baseDamage *= 1.4f;
 	delay /= 2;
 }
 
 void Tower::hitTarget()
 {
 	ResetCooldown();
+}
+
+bool Tower::IsInRange(Vector2 targetPos)
+{
+	Vector2 cur = getLocation();
+	cur.x += 50;
+	cur.y += 30;
+	float dist = hypot(targetPos.x - cur.x, targetPos.y - cur.y);
+	if(dist < range)
+		return true;
+	return false;
 }
 
 Mob * Tower::getTarget()
