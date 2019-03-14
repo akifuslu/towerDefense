@@ -26,18 +26,28 @@ void GameStateMachine::LoadMainMenu()
 	Button* creditsBtn = new Button("Credits", { 184,517}, GETTEXTURE("menu-button"), {70, 490});
 	Button* exitBtn = new Button("Quit", { 197,617}, GETTEXTURE("menu-button"), {70, 590});
 	Button* levelBackBtn = new Button("", { 0,0 }, GETTEXTURE("back-button"), {913, 645});
+	Button* creditsBackBtn = new Button("", { 0,0 }, GETTEXTURE("back-button"), { 913, 645 });
 	Button* levelBtn1 = new Button("Level 1", { 170,430},GETTEXTURE("level-button"), { 130, 360});
 	Button* levelBtn2 = new Button("Level 2", { 370,430 }, GETTEXTURE("level-button"), { 330, 360 });
 	Button* levelBtn3 = new Button("Level 3", { 570,430 }, GETTEXTURE("level-button"), { 530, 360 });
 	Button* levelBtn4 = new Button("Level 4", { 770,430 }, GETTEXTURE("level-button"), { 730, 360 });
+	//Credits panel
+	GameEntity* credits = new GameEntity(GETTEXTURE("credits"), {312,400});
+	uiEntities.push_back(credits);
+	uiEntities.push_back(creditsBackBtn);
+	creditsPanel.push_back(credits);
+	creditsPanel.push_back(creditsBackBtn);
 	//add functionality to buttons
 	std::function<void()> start = std::bind(&GameStateMachine::DisplayLevelSelect, this);	
 	std::function<void()> exit = std::bind(&GameStateMachine::ExitGame, this);
 	std::function<void(int)> loadLevel = std::bind(&GameStateMachine::LoadLevel, this, std::placeholders::_1);
 	std::function<void()> dispMenu = std::bind(&GameStateMachine::DisplayMenu, this);
+	std::function<void()> dispCredits = std::bind(&GameStateMachine::DisplayCredits, this);
 	startBtn->AddEvent(start);
+	creditsBtn->AddEvent(dispCredits);
 	exitBtn->AddEvent(exit);
 	levelBackBtn->AddEvent(dispMenu);
+	creditsBackBtn->AddEvent(dispMenu);
 	levelBtn1->AddEvent(loadLevel, 1);	
 	levelBtn2->AddEvent(loadLevel, 2);
 	levelBtn3->AddEvent(loadLevel, 3);
