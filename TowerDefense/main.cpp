@@ -1,4 +1,3 @@
-#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 #include "pch.h"
@@ -31,6 +30,5 @@ int main()
 	}
 	
 	CloseWindow();
-	_CrtDumpMemoryLeaks();
 	return 0;
 }
