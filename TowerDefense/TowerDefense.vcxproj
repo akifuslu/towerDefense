@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3D56E52A-37FF-4E18-B7C7-911A4BE3D4E7}</ProjectGuid>
     <RootNamespace>TowerDefense</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -168,6 +168,7 @@
     <ClInclude Include="Mob.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="Tower.h" />
     <ClInclude Include="TowerButton.h" />
@@ -176,12 +177,16 @@
     <ClInclude Include="UIText.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\rogue_4TL_icon.ico" />
     <Image Include="Resources\cloud.png" />
     <Image Include="Resources\sky.png" />
     <Image Include="Resources\sword.png" />
     <Image Include="Resources\tower-button.png" />
     <Image Include="Resources\towerspot.png" />
     <Image Include="Resources\tutorial-background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TowerDefense1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -114,6 +114,7 @@
     <ClInclude Include="Bombard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\cloud.png">
@@ -134,6 +135,7 @@
     <Image Include="Resources\tutorial-background.png">
       <Filter>Resources</Filter>
     </Image>
+    <Image Include="..\..\rogue_4TL_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
@@ -145,5 +147,8 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e9480559-104c-4267-9b25-db69b27c65ee}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TowerDefense1.rc" />
   </ItemGroup>
 </Project>

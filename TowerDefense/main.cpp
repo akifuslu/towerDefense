@@ -19,7 +19,9 @@ int main()
 	int screenWidth = SCREENWIDTH;
 	int screenHeight = SCREENHEIGHT;
 	SetConfigFlags(FLAG_VSYNC_HINT);
-	InitWindow(screenWidth, screenHeight, "Tower Defense Alpha 0.0");
+	InitWindow(screenWidth, screenHeight, "Kakrush 1.0");
+	Image icon = LoadImage("Resources//rogue.png");
+	SetWindowIcon(icon);
 	SetTargetFPS(60);
 	ResourceLoader::GetInstance().Load("Resources");
 	GameStateMachine::GetInstance().LoadMainMenu();
@@ -28,7 +30,7 @@ int main()
 		if (!GameStateMachine::GetInstance().GameLoop())
 			break;
 	}
-	
+	UnloadImage(icon);
 	CloseWindow();
 	return 0;
 }
