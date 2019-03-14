@@ -38,6 +38,9 @@ void GameStateMachine::LoadMainMenu()
 	exitBtn->AddEvent(exit);
 	levelBackBtn->AddEvent(dispMenu);
 	levelBtn1->AddEvent(loadLevel, 1);	
+	levelBtn2->AddEvent(loadLevel, 2);
+	levelBtn3->AddEvent(loadLevel, 3);
+	levelBtn4->AddEvent(loadLevel, 4);
 	//register buttons for drawing
 	uiEntities.push_back(startBtn);
 	uiEntities.push_back(creditsBtn);
@@ -223,13 +226,13 @@ void GameStateMachine::LoadLevel(int level)
 		wave >> tmp >> m1Count >> tmp >> m2Count >> tmp >> m3Count;
 		waves.push_back(m1Count+m2Count+m3Count);
 		for (int j = 0; j < m1Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("bandit"), { 0, 0 }, 0, 0.12, 0.750, 50, 150, "banditdead"));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("bandit"), { 0, 0 }, 0, 0.12, .8, 50, 150, "banditdead"));
 		}
 		for (int j = 0; j < m2Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("rogue"), { 0, 0 }, 0, 0.12, 1.125, 100, 250, "roguedead"));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("rogue"), { 0, 0 }, 0, 0.12, 1.500, 100, 250, "roguedead"));
 		}
 		for (int j = 0; j < m3Count; j++) {
-			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("knight"), { 0, 0 }, 0, 0.12, 1.500, 150, 400, "knightdead"));
+			Behaviour::GetInstance().RegisterMob(new Mob(GETTEXTURE("knight"), { 0, 0 }, 0, 0.12, 1, 200, 400, "knightdead"));
 		}
 	}
 	Behaviour::GetInstance().SetWaves(waves);

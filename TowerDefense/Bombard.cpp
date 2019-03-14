@@ -49,8 +49,8 @@ void Bombard::UpdateProjectile()
 	float len = sqrt(moveVector.x * moveVector.x + moveVector.y * moveVector.y);
 	moveVector.x /= len;
 	moveVector.y /= len;
-	moveVector.x *= 3;
-	moveVector.y *= 3;
+	moveVector.x *= 4;
+	moveVector.y *= 4;
 
 	if (dist > 20) {
 		projectile->Move(moveVector);

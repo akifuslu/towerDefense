@@ -6,11 +6,11 @@ spot3Pos: 370 380
 spot4Pos: 570 380
 spot5Pos: 370 580
 spot6Pos: 570 580
-playerGold: 300
+playerGold: 10000
 playerHealth: 10
 waveCount: 5
-5thWave: 6 ; 4 ; 2
-4thWave: 4 ; 2 ; 1
-3rdWave: 2 ; 2 ; 0
-2ndWave: 2 ; 0 ; 0
-1stWave: 1 ; 0 ; 0
+5thWave: 20 ; 20 ; 20
+4thWave: 10 ; 10 ; 10
+3rdWave: 0 ; 0 ; 10
+2ndWave: 0 ; 10 ; 0
+1stWave: 10 ; 0 ; 0
