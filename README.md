@@ -4,3 +4,6 @@ This is a sample **Tower Defense** game project developed using **raylib Game De
 ## Contributors
 * [Akif Üslü](https://github.com/akifuslu/)
 * [Y. Cahit Yıldırım](https://github.com/cahity/)
+
+## Latest Release
+[Download](https://github.com/akifuslu/towerDefense/releases/download/1.0/Kakrush_1.0.tar)
