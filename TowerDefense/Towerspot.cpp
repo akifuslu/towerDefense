@@ -20,7 +20,7 @@ bool Towerspot::OnClick()
 		return false;
 	if (GameStateMachine::GetInstance().OnPause())//game currently paused do not show buttons
 		return false;
-	TowerButtonHandler::GetInstance().HideButtons();
+	TowerButtonHandler::GetInstance().HideButtons();//without this line player can build multiple towers on same spot
 	if (full)
 		TowerButtonHandler::GetInstance().ShowButtons(*this, *spotTower);
 	else
