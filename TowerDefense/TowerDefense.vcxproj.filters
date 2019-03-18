@@ -135,7 +135,7 @@
     <Image Include="Resources\tutorial-background.png">
       <Filter>Resources</Filter>
     </Image>
-    <Image Include="..\..\rogue_4TL_icon.ico" />
+    <Image Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resources">
@@ -149,6 +149,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TowerDefense1.rc" />
+    <ResourceCompile Include="TowerDefense2.rc" />
   </ItemGroup>
 </Project>

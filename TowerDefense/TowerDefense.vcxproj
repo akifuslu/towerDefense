@@ -177,7 +177,7 @@
     <ClInclude Include="UIText.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\rogue_4TL_icon.ico" />
+    <Image Include="icon.ico" />
     <Image Include="Resources\cloud.png" />
     <Image Include="Resources\sky.png" />
     <Image Include="Resources\sword.png" />
@@ -186,7 +186,7 @@
     <Image Include="Resources\tutorial-background.png" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TowerDefense1.rc" />
+    <ResourceCompile Include="TowerDefense2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
